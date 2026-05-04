@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Pricing Calculator Alternative — freeaicostcalculator.app</title>
+    <meta name="description" content="Free multi-provider alternative to OpenAI's pricing page. Estimate spend across GPT, Claude, Gemini, Grok and 370+ models in one workload.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freeaicostcalculator.app/vs-openai-pricing-page">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:title" content="OpenAI Pricing Calculator Alternative — freeaicostcalculator.app">
+    <meta property="og:description" content="Free multi-provider alternative to OpenAI's pricing page. Estimate spend across GPT, Claude, Gemini, Grok and 370+ models in one workload.">
+    <meta property="og:image" content="https://freeaicostcalculator.app/og-image.svg">
+    <meta property="og:url" content="https://freeaicostcalculator.app/vs-openai-pricing-page">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenAI Pricing Calculator Alternative — freeaicostcalculator.app">
+    <meta name="twitter:description" content="Free multi-provider alternative to OpenAI's pricing page. Estimate spend across GPT, Claude, Gemini, Grok and 370+ models in one workload.">
+    <meta name="twitter:image" content="https://freeaicostcalculator.app/og-image.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "OpenAI Pricing Calculator Alternative — freeaicostcalculator.app",
+        "description": "Free multi-provider alternative to OpenAI's pricing page. Estimate spend across GPT, Claude, Gemini, Grok and 370+ models in one workload.",
+        "url": "https://freeaicostcalculator.app/vs-openai-pricing-page",
+        "publisher": { "@type": "Organization", "name": "freeaicostcalculator.app", "url": "https://freeaicostcalculator.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Can I use this without an OpenAI account?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. freeaicostcalculator.app does not call OpenAI or any provider — it is pure arithmetic on published pricing. You do not need any account or API key to use the calculator." } },
+            { "@type": "Question", "name": "Are the OpenAI prices accurate?", "acceptedAnswer": { "@type": "Answer", "text": "They reflect OpenAI's published per-million rates as of 2026-05, accessed via OpenRouter (which adds a small margin). Always verify against OpenAI's current pricing page for production budgeting." } },
+            { "@type": "Question", "name": "Does it cover OpenAI's o-series and reasoning models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. o4-mini is in the curated catalog. The full OpenRouter live catalog (visible in the OpenRouter tab) includes every model OpenRouter exposes, which covers OpenAI's reasoning lineup." } },
+            { "@type": "Question", "name": "Why not call the OpenAI API directly?", "acceptedAnswer": { "@type": "Answer", "text": "OpenAI's API blocks browser CORS for security. A static page cannot call api.openai.com from your browser. OpenRouter is the standard workaround for browser-based tools — same OpenAI models, browser-callable." } },
+            { "@type": "Question", "name": "Does it model OpenAI's prompt caching discount?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The \"Apply 50% prompt-cache discount\" toggle approximates the typical OpenAI cached-prompt savings. For more precise modeling (cache hit rate × discount), run the calculation twice and split traffic." } },
+            { "@type": "Question", "name": "Can I export the comparison?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Copy as Markdown table or download as CSV." } }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeaicostcalculator.app/" },
+            { "@type": "ListItem", "position": 2, "name": "vs OpenAI pricing page", "item": "https://freeaicostcalculator.app/vs-openai-pricing-page" }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Freesuite",
+        "alternateName": "freesuite.app",
+        "url": "https://freesuite.app/",
+        "description": "Free, browser-based tools for documents, PDFs, images, text, and developer workflows. Every tool runs client-side with no sign-up.",
+        "sameAs": ["https://freesuite.app/"]
+    }
+    </script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#faf9f6;--surface:#f4f2ee;--border:#e8e4dd;--text-primary:#1a1917;--text-secondary:#6b6760;--text-muted:#9e9b96;--accent:#C49A2A;--accent-hover:#A8831F;--accent-text:#fff;--shadow:0 1px 3px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.04);--font-body:'Lora',serif;--font-ui:'DM Sans',sans-serif}
+        html.dark{--bg:#141412;--surface:#1e1c1a;--border:#2e2b27;--text-primary:#f0ede8;--text-secondary:#9e9b96;--text-muted:#6b6760;--accent:#D4A835;--accent-hover:#C49A2A;--shadow:0 1px 3px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.2)}
+        html{font-size:15px;line-height:1.6}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)}
+        .header{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+        .header-brand{font-family:var(--font-ui);font-size:15px;font-weight:600;color:var(--accent);text-decoration:none}
+        .theme-toggle{font-family:var(--font-ui);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 12px;cursor:pointer;color:var(--text-secondary);transition:all .15s ease}
+        .theme-toggle:hover{background:var(--border)}
+        .breadcrumb{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);padding:12px 24px;max-width:800px;margin:0 auto}
+        .breadcrumb a{color:var(--accent);text-decoration:none}
+        .breadcrumb a:hover{text-decoration:underline}
+        .landing-content{max-width:800px;margin:0 auto;padding:32px 24px 64px}
+        .landing-content h1{font-size:32px;font-weight:700;margin-bottom:24px;line-height:1.3}
+        .landing-content h2{font-size:22px;font-weight:600;margin-top:32px;margin-bottom:12px}
+        .landing-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.7}
+        .landing-content ul,.landing-content ol{margin:0 0 16px 24px;color:var(--text-secondary)}
+        .landing-content li{margin-bottom:8px;line-height:1.7}
+        .landing-content code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+        .comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:var(--font-ui);font-size:13px}
+        .comparison-table th{background:var(--surface);padding:12px 16px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+        .comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+        .comparison-table tr:hover td{background:var(--surface)}
+        .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;margin:32px 0}
+        .cta-box h3{font-family:var(--font-ui);font-size:18px;font-weight:600;margin-bottom:12px}
+        .cta-box p{color:var(--text-muted);margin-bottom:16px}
+        .cta-btn{font-family:var(--font-ui);font-size:15px;font-weight:600;background:var(--accent);color:var(--accent-text);border:none;border-radius:8px;padding:12px 24px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .15s ease}
+        .cta-btn:hover{background:var(--accent-hover)}
+        details{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:8px}
+        summary{font-family:var(--font-ui);font-weight:500;cursor:pointer;color:var(--text-primary)}
+        details p{margin-top:12px;margin-bottom:0;font-family:var(--font-ui);font-size:13px}
+        .related-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:24px 0}
+        .related-tool-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;display:block;transition:all .15s ease}
+        .related-tool-card:hover{box-shadow:var(--shadow)}
+        .related-tool-card .tool-name{font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--accent)}
+        .related-tool-card .tool-desc{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);margin-top:4px}
+        .landing-footer{text-align:center;padding:32px 24px;font-family:var(--font-ui);font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+        .suite-badge{position:fixed;bottom:16px;right:16px;font-family:var(--font-ui);font-size:11px;color:var(--text-muted);text-decoration:none}
+        @media (max-width:768px){.landing-content h1{font-size:24px}.landing-content{padding:24px 16px 48px}.comparison-table{font-size:12px}.suite-badge .badge-prefix{display:none}.related-tools{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="header-brand">freeaicostcalculator.app</a>
+        <button class="theme-toggle">☀️</button>
+    </header>
+    <nav class="breadcrumb"><a href="/">Home</a> › vs OpenAI pricing page</nav>
+    <article class="landing-content">
+        <h1>OpenAI Pricing Calculator Alternative — Compare Every Provider in One Workload</h1>
+
+        <p>OpenAI's pricing page is a great reference — for OpenAI models. The moment you want to compare GPT-5 against Claude Opus 4.7 or Gemini 2.5 Pro at the same workload, you have to copy numbers across three browser tabs and do arithmetic in your head. freeaicostcalculator.app is a free multi-provider alternative — type your workload once, see per-model monthly cost across OpenAI (via OpenRouter), Anthropic, Google, xAI, Mistral, DeepSeek, Groq, Cohere and the entire OpenRouter live catalog of 370+ more, all in one sorted bar chart.</p>
+
+        <h2>What freeaicostcalculator.app does that OpenAI's pricing page doesn't</h2>
+        <table class="comparison-table">
+            <thead><tr><th>Feature</th><th>freeaicostcalculator.app</th><th>OpenAI pricing page</th></tr></thead>
+            <tbody>
+                <tr><td>Models compared</td><td>24 curated + 370+ via OpenRouter</td><td>OpenAI only</td></tr>
+                <tr><td>Workload sliders (req/mo, in tokens, out tokens)</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Sorted bar chart</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Flat-plan break-even check</td><td>Yes (Plus, Pro, Claude Pro/Max, Cursor, Copilot)</td><td>No</td></tr>
+                <tr><td>Prompt-cache toggle</td><td>Yes (50% effective discount)</td><td>Documentation only</td></tr>
+                <tr><td>Copy as Markdown / CSV export</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Sign-up</td><td>None</td><td>None</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Why a multi-provider calculator matters</h2>
+        <p>For the same workload, the spread between cheapest and most expensive models is often 50× or more. Picking the right model for your task — within and across providers — usually saves more money than negotiating a discount. freeaicostcalculator.app makes that decision visual: the bar chart sorts cheapest-first by default, so the right answer is the leftmost (or topmost) bar.</p>
+
+        <h2>How OpenAI's pricing maps into freeaicostcalculator.app</h2>
+        <p>OpenAI's API blocks direct browser calls (no CORS), so the calculator routes OpenAI models through OpenRouter — same models, browser-callable, single key. GPT-5, GPT-5 mini, GPT-4.1 and o4-mini all appear in the picker tagged "(OpenRouter)" with prices reflecting OpenRouter's pass-through. Pricing matches OpenAI's published rates closely; the small OpenRouter margin is included.</p>
+        <div class="cta-box">
+            <h3>Try freeaicostcalculator.app — Free, No Sign-Up</h3>
+            <p>Workload-driven. 370+ models. Flat-plan break-even check. Pure arithmetic in your browser.</p>
+            <a href="/" class="cta-btn">Open AI Cost Calculator →</a>
+        </div>
+        <h2>Frequently Asked Questions</h2>
+        <details><summary>Can I use this without an OpenAI account?</summary><p>Yes. freeaicostcalculator.app does not call OpenAI or any provider — it is pure arithmetic on published pricing. You do not need any account or API key to use the calculator.</p></details>
+        <details><summary>Are the OpenAI prices accurate?</summary><p>They reflect OpenAI's published per-million rates as of 2026-05, accessed via OpenRouter (which adds a small margin). Always verify against OpenAI's current pricing page for production budgeting.</p></details>
+        <details><summary>Does it cover OpenAI's o-series and reasoning models?</summary><p>Yes. o4-mini is in the curated catalog. The full OpenRouter live catalog (visible in the OpenRouter tab) includes every model OpenRouter exposes, which covers OpenAI's reasoning lineup.</p></details>
+        <details><summary>Why not call the OpenAI API directly?</summary><p>OpenAI's API blocks browser CORS for security. A static page cannot call api.openai.com from your browser. OpenRouter is the standard workaround for browser-based tools — same OpenAI models, browser-callable.</p></details>
+        <details><summary>Does it model OpenAI's prompt caching discount?</summary><p>Yes. The "Apply 50% prompt-cache discount" toggle approximates the typical OpenAI cached-prompt savings. For more precise modeling (cache hit rate × discount), run the calculation twice and split traffic.</p></details>
+        <details><summary>Can I export the comparison?</summary><p>Yes. Copy as Markdown table or download as CSV.</p></details>
+
+        <h2>More Free Tools from Freesuite</h2>
+        <div class="related-tools">
+            <a href="https://freetokencounter.app" class="related-tool-card"><div class="tool-name">freetokencounter.app</div><div class="tool-desc">Live token count for 100+ AI models</div></a>
+            <a href="https://freeprompttester.app" class="related-tool-card"><div class="tool-name">freeprompttester.app</div><div class="tool-desc">Side-by-side prompt comparison + chat</div></a>
+            <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">JSON formatter & validator</div></a>
+            <a href="https://freecsv2json.app" class="related-tool-card"><div class="tool-name">freecsv2json.app</div><div class="tool-desc">Bidirectional CSV ↔ JSON</div></a>
+            <a href="https://freeregextester.app" class="related-tool-card"><div class="tool-name">freeregextester.app</div><div class="tool-desc">Live regex tester</div></a>
+            <a href="https://freebase64.app" class="related-tool-card"><div class="tool-name">freebase64.app</div><div class="tool-desc">Base64 encode/decode</div></a>
+        </div>
+    </article>
+    <footer class="landing-footer">&copy; freeaicostcalculator.app</footer>
+    <a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener"><span class="badge-prefix">by </span>freesuite.app</a>
+    <script>
+    (()=>{const t=document.querySelector('.theme-toggle');const g=()=>localStorage.getItem('suite_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const a=v=>{document.documentElement.classList.toggle('dark',v==='dark');t.textContent=v==='dark'?'🌙':'☀️';localStorage.setItem('suite_theme',v)};a(g());t.addEventListener('click',()=>a(document.documentElement.classList.contains('dark')?'light':'dark'))})();
+    </script>
+</body>
+</html>

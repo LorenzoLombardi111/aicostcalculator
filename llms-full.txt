@@ -1,0 +1,125 @@
+# freeaicostcalculator.app — Full text
+
+> Free, browser-based LLM API cost calculator. Enter requests/month + avg input/output tokens, pick 1-12 models, see per-model monthly cost as a sorted bar chart with flat-plan break-even check.
+
+---
+
+## Home
+
+### AI Cost Calculator — Estimate Monthly LLM API Spend Across GPT, Claude, Gemini and 370+ Models
+
+freeaicostcalculator.app is a free, browser-based calculator that estimates your monthly LLM API spend before you commit. You enter three numbers — requests per month, average input tokens per request, average output tokens per request — pick which models to compare from a curated catalog of 24 models across 8 providers (plus the entire OpenRouter live catalog of 370+ more), and immediately see per-model monthly cost, a horizontal bar-chart comparison, and a flat-plan break-even check against ChatGPT Plus, Claude Pro, Cursor and GitHub Copilot.
+
+This is a planning and budgeting tool. Different from a token counter, which answers "how much does this specific text cost?" — freeaicostcalculator.app answers "if I run this workload at scale, what is my monthly bill across these models?" The calculation is pure arithmetic on each provider's published per-million pricing: per-request cost equals (input tokens × input rate + output tokens × output rate) divided by one million; monthly cost equals per-request cost multiplied by your requests-per-month input.
+
+### How does freeaicostcalculator.app work?
+
+Drag the three sliders or type values into the workload panel. Pick 1 to 12 models from the picker — the OpenRouter tab loads the full live catalog (371+ models) on page load with pricing pulled inline, plus a provider sub-filter dropdown (OpenAI, Anthropic, Google, Meta/Llama, Mistral, DeepSeek, xAI, Cohere, Qwen, Perplexity, NVIDIA, MiniMax and 50 more) and a search box. The results panel updates instantly with a sorted bar chart, a detailed table, and a flat-plan break-even card. Toggle the "prompt cache" checkbox to model a 50% effective discount on input cost, which approximates what most production deployments actually pay.
+
+### How is this different from a token counter?
+
+freetokencounter.app answers a per-prompt question: paste text, see tokens, see cost for one call. freeaicostcalculator.app answers a workload question: at N requests per month with M tokens average, what is the monthly bill across each model? Different intent — token counting is what you do when iterating on a prompt; cost calculation is what you do when sizing a budget or picking a model for a product. The two tools cross-link naturally: count tokens on a representative prompt with the token counter, then plug those numbers into the cost calculator to project monthly spend.
+
+### Should I use a flat plan instead of paying API rates?
+
+It depends on usage. ChatGPT Plus is $20 per month, ChatGPT Pro is $200 per month, Claude Pro is $20 per month, Claude Max is $100 or $200 per month, Cursor Pro is $20 per month, GitHub Copilot is $10 to $19 per month. For light usage, a flat plan is almost always cheaper. For programmatic access at scale, the API is the only option because flat plans are rate-limited chat products without programmatic guarantees. freeaicostcalculator.app shows your projected API spend alongside flat-plan prices so you can spot the break-even point — but treat the comparison as informational, not direct.
+
+### AI Model Pricing Comparison Matrix
+
+| Model | Provider | Context | Input $/M | Output $/M |
+|---|---|---|---|---|
+| Claude Opus 4.7 | Anthropic | 1M | $15 | $75 |
+| Claude Sonnet 4.6 | Anthropic | 1M | $3 | $15 |
+| Claude Haiku 4.5 | Anthropic | 200K | $1 | $5 |
+| GPT-5 | OpenAI (via OpenRouter) | 400K | $1.25 | $10 |
+| GPT-5 mini | OpenAI (via OpenRouter) | 400K | $0.25 | $2 |
+| GPT-4.1 | OpenAI (via OpenRouter) | 1M | $3 | $12 |
+| Gemini 2.5 Pro | Google | 1M | $1.25 | $10 |
+| Gemini 2.5 Flash | Google | 1M | $0.30 | $2.50 |
+| Grok 4 | xAI | 256K | $5 | $15 |
+| Grok 4 Fast | xAI | 2M | $0.20 | $0.50 |
+| DeepSeek V3.1 | DeepSeek | 128K | $0.27 | $1.10 |
+| Llama 3.3 70B (Groq) | Groq | 128K | $0.59 | $0.79 |
+| Llama 3.1 8B (Groq) | Groq | 128K | $0.05 | $0.08 |
+| Mistral Large 2 | Mistral | 128K | $2 | $6 |
+| Command A | Cohere | 256K | $2.50 | $10 |
+
+Prices as of 2026-05-04. Always verify against each provider's pricing page for production budgeting.
+
+### Frequently Asked Questions
+
+**What is freeaicostcalculator.app?**
+freeaicostcalculator.app is a free, browser-based calculator that estimates your monthly LLM API spend across multiple AI models. You enter three numbers — requests per month, average input tokens per request, average output tokens per request — and pick which models to compare. The calculator shows per-model monthly cost, a horizontal bar chart, and a flat-plan break-even check.
+
+**How does freeaicostcalculator.app calculate cost?**
+Per-request cost = (input tokens × input rate + output tokens × output rate) / 1,000,000, using each model's published per-million pricing. Monthly cost = per-request × requests-per-month. The calculator does not call any AI provider — pure arithmetic on baked-in pricing data plus the live OpenRouter catalog fetched at page load.
+
+**How is this different from freetokencounter.app?**
+freetokencounter.app answers "how much does this specific text cost when sent to model X?" — paste a prompt, see tokens and cost. freeaicostcalculator.app answers "if I run N requests/month at avg M tokens, what's my monthly bill across these models?" One is for a specific prompt; the other is for planning and budgeting.
+
+**Which models are supported?**
+24 curated models across 8 providers (Anthropic, Google, xAI, Mistral, DeepSeek, Groq, Cohere, plus OpenAI via OpenRouter), plus the entire OpenRouter live catalog of 370+ models loaded on page init.
+
+**Should I use a flat plan instead of API rates?**
+For light usage, yes. For programmatic access at scale, the API is the only option since flat plans are rate-limited chat products. The calculator shows both alongside each other.
+
+**Are the prices accurate?**
+Each provider's published per-million rates baked into a static pricing object plus the live OpenRouter catalog. Prices change occasionally; always verify against current pricing pages for production budgeting.
+
+**Does freeaicostcalculator.app need an API key?**
+No. Pure calculator. The only network request is a public GET to OpenRouter's models endpoint to populate the live catalog.
+
+**Can I model prompt caching?**
+Yes — toggle applies a 50% effective discount on input portion. Simplification (actual savings depend on hit rate and provider).
+
+---
+
+## /vs-openai-pricing-page
+
+### Free OpenAI Pricing Calculator — and Every Other Provider
+
+OpenAI's pricing page is a great reference — for OpenAI models. The moment you want to compare GPT-5 against Claude Opus 4.7 or Gemini 2.5 Pro at the same workload, you have to copy numbers across three tabs and do arithmetic in your head. freeaicostcalculator.app is a free multi-provider alternative — type your workload once, see per-model monthly cost across OpenAI (via OpenRouter), Anthropic, Google, xAI, Mistral, DeepSeek, Groq, Cohere and the entire OpenRouter live catalog of 370+ more, all in one sorted bar chart.
+
+The OpenAI pricing page also doesn't include flat-plan break-even — you have to mentally compare against ChatGPT Plus or Pro yourself. freeaicostcalculator.app shows the comparison live as you adjust the workload sliders.
+
+---
+
+## /claude-vs-gpt-cost
+
+### Claude vs GPT Cost — Head-to-Head Across Volume Tiers
+
+For the same workload, Claude Opus 4.7 ($15 / $75 per million) costs roughly 12× more than GPT-5 ($1.25 / $10 per million) but sits at a similar quality tier. Claude Sonnet 4.6 ($3 / $15) and GPT-5 mini ($0.25 / $2) trade more closely. The actual monthly bill depends on your input-to-output ratio, your volume, and whether you use prompt caching.
+
+freeaicostcalculator.app lets you model this directly. Pick Claude Opus 4.7, Claude Sonnet 4.6, GPT-5 and GPT-5 mini in the picker; set your workload; the bar chart shows the spread instantly. Toggle the prompt-cache option to see how the comparison changes when input-heavy workloads benefit from caching.
+
+---
+
+## /llm-monthly-cost-estimator
+
+### LLM Monthly Cost Estimator — Workload-Driven
+
+If you're sizing API spend for a product, three numbers matter: how many requests per month, how big is the average input prompt, how big is the average output response. freeaicostcalculator.app takes those three numbers, runs them against any model in its curated catalog or the full OpenRouter catalog, and shows monthly + yearly spend per model. Sortable, copy-as-Markdown, exportable as CSV.
+
+---
+
+## /chatgpt-pro-vs-api
+
+### ChatGPT Pro vs API — When to Pay $200/mo, When to Pay Per Token
+
+ChatGPT Pro is $200/month for unlimited GPT-5 and o-series access — but it's a chat product, not API access. ChatGPT Plus at $20/month has rate limits but covers most personal use. Beyond a certain monthly volume, paying API rates per request can be cheaper than a flat plan; below that, the plan wins.
+
+freeaicostcalculator.app shows the break-even point as you adjust your workload. Enter your typical usage; the flat-plan card shows whether ChatGPT Plus, ChatGPT Pro, Claude Pro, Claude Max, Cursor, or GitHub Copilot beats your projected API spend at current rates. The honest caveat: flat plans cannot fully replace API access if you need programmatic integration, custom workflows, or multi-vendor routing.
+
+---
+
+## /how-to-budget-llm-api-spend
+
+### How to Budget LLM API Spend
+
+Three rules:
+
+1. **Get a representative prompt + response sample.** Use freetokencounter.app on a real prompt to see tokens. The numbers are usually higher than people guess.
+2. **Multiply by realistic monthly volume, not best-case.** A 10× safety factor is reasonable when you're new to the space.
+3. **Compare across models, not just providers.** The same workload can vary 60× between GPT-5 mini and Claude Opus 4.7 — picking the right model for the task matters more than picking the right provider.
+
+freeaicostcalculator.app does step 3 in one click. Pair it with freetokencounter.app for steps 1-2 to get a realistic monthly forecast.

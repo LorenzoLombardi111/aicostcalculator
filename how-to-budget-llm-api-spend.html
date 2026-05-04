@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Budget LLM API Spend — freeaicostcalculator.app</title>
+    <meta name="description" content="Practical guide to forecasting LLM API spend before you commit. Three rules + the workflow that produces realistic monthly numbers.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freeaicostcalculator.app/how-to-budget-llm-api-spend">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:title" content="How to Budget LLM API Spend — freeaicostcalculator.app">
+    <meta property="og:description" content="Practical guide to forecasting LLM API spend before you commit. Three rules + the workflow that produces realistic monthly numbers.">
+    <meta property="og:image" content="https://freeaicostcalculator.app/og-image.svg">
+    <meta property="og:url" content="https://freeaicostcalculator.app/how-to-budget-llm-api-spend">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Budget LLM API Spend — freeaicostcalculator.app">
+    <meta name="twitter:description" content="Practical guide to forecasting LLM API spend before you commit. Three rules + the workflow that produces realistic monthly numbers.">
+    <meta name="twitter:image" content="https://freeaicostcalculator.app/og-image.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Budget LLM API Spend — freeaicostcalculator.app",
+        "description": "Practical guide to forecasting LLM API spend before you commit. Three rules + the workflow that produces realistic monthly numbers.",
+        "url": "https://freeaicostcalculator.app/how-to-budget-llm-api-spend",
+        "publisher": { "@type": "Organization", "name": "freeaicostcalculator.app", "url": "https://freeaicostcalculator.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How wrong is my initial cost estimate likely to be?", "acceptedAnswer": { "@type": "Answer", "text": "Without real token counts, expect 2-5× under-estimation. With real counts and reasonable output assumptions, expect ~10-20% error." } },
+            { "@type": "Question", "name": "Should I budget for the 95th-percentile case or average?", "acceptedAnswer": { "@type": "Answer", "text": "95th-percentile if cost overruns are damaging. Average if cost overruns are tolerable. For most products, somewhere between (e.g., average × 1.5) is the right working number." } },
+            { "@type": "Question", "name": "How much can prompt caching save?", "acceptedAnswer": { "@type": "Answer", "text": "Up to 90% on the cached portion of input. In practice, 30-60% reduction on total monthly bill for input-heavy workloads (long system prompts, RAG). The calculator's 50% toggle is a working middle estimate." } },
+            { "@type": "Question", "name": "Should I use the cheapest model that works?", "acceptedAnswer": { "@type": "Answer", "text": "Usually yes, but watch quality. A 60× cheaper model that produces wrong answers 20% more often may not save money — you spend it on retries, support tickets, or worse, broken user experience. Run side-by-side comparisons in freeprompttester.app to validate." } },
+            { "@type": "Question", "name": "What about reasoning models — they cost more per call?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but they often need fewer back-and-forth turns. For multi-step problems, a single GPT-5 or o4-mini call may replace 3-5 cheaper calls. Model end-to-end task cost, not per-call cost." } },
+            { "@type": "Question", "name": "Do I need to budget for OpenAI's new pricing tiers?", "acceptedAnswer": { "@type": "Answer", "text": "Tiered pricing (cached vs uncached, different context windows) does change the math. The calculator's 50% cache toggle approximates this. For precision, run the calculator twice with different multipliers." } }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeaicostcalculator.app/" },
+            { "@type": "ListItem", "position": 2, "name": "How to budget LLM API spend", "item": "https://freeaicostcalculator.app/how-to-budget-llm-api-spend" }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Freesuite",
+        "alternateName": "freesuite.app",
+        "url": "https://freesuite.app/",
+        "description": "Free, browser-based tools for documents, PDFs, images, text, and developer workflows. Every tool runs client-side with no sign-up.",
+        "sameAs": ["https://freesuite.app/"]
+    }
+    </script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#faf9f6;--surface:#f4f2ee;--border:#e8e4dd;--text-primary:#1a1917;--text-secondary:#6b6760;--text-muted:#9e9b96;--accent:#C49A2A;--accent-hover:#A8831F;--accent-text:#fff;--shadow:0 1px 3px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.04);--font-body:'Lora',serif;--font-ui:'DM Sans',sans-serif}
+        html.dark{--bg:#141412;--surface:#1e1c1a;--border:#2e2b27;--text-primary:#f0ede8;--text-secondary:#9e9b96;--text-muted:#6b6760;--accent:#D4A835;--accent-hover:#C49A2A;--shadow:0 1px 3px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.2)}
+        html{font-size:15px;line-height:1.6}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)}
+        .header{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+        .header-brand{font-family:var(--font-ui);font-size:15px;font-weight:600;color:var(--accent);text-decoration:none}
+        .theme-toggle{font-family:var(--font-ui);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 12px;cursor:pointer;color:var(--text-secondary);transition:all .15s ease}
+        .theme-toggle:hover{background:var(--border)}
+        .breadcrumb{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);padding:12px 24px;max-width:800px;margin:0 auto}
+        .breadcrumb a{color:var(--accent);text-decoration:none}
+        .breadcrumb a:hover{text-decoration:underline}
+        .landing-content{max-width:800px;margin:0 auto;padding:32px 24px 64px}
+        .landing-content h1{font-size:32px;font-weight:700;margin-bottom:24px;line-height:1.3}
+        .landing-content h2{font-size:22px;font-weight:600;margin-top:32px;margin-bottom:12px}
+        .landing-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.7}
+        .landing-content ul,.landing-content ol{margin:0 0 16px 24px;color:var(--text-secondary)}
+        .landing-content li{margin-bottom:8px;line-height:1.7}
+        .landing-content code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+        .comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:var(--font-ui);font-size:13px}
+        .comparison-table th{background:var(--surface);padding:12px 16px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+        .comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+        .comparison-table tr:hover td{background:var(--surface)}
+        .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;margin:32px 0}
+        .cta-box h3{font-family:var(--font-ui);font-size:18px;font-weight:600;margin-bottom:12px}
+        .cta-box p{color:var(--text-muted);margin-bottom:16px}
+        .cta-btn{font-family:var(--font-ui);font-size:15px;font-weight:600;background:var(--accent);color:var(--accent-text);border:none;border-radius:8px;padding:12px 24px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .15s ease}
+        .cta-btn:hover{background:var(--accent-hover)}
+        details{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:8px}
+        summary{font-family:var(--font-ui);font-weight:500;cursor:pointer;color:var(--text-primary)}
+        details p{margin-top:12px;margin-bottom:0;font-family:var(--font-ui);font-size:13px}
+        .related-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:24px 0}
+        .related-tool-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;display:block;transition:all .15s ease}
+        .related-tool-card:hover{box-shadow:var(--shadow)}
+        .related-tool-card .tool-name{font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--accent)}
+        .related-tool-card .tool-desc{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);margin-top:4px}
+        .landing-footer{text-align:center;padding:32px 24px;font-family:var(--font-ui);font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+        .suite-badge{position:fixed;bottom:16px;right:16px;font-family:var(--font-ui);font-size:11px;color:var(--text-muted);text-decoration:none}
+        @media (max-width:768px){.landing-content h1{font-size:24px}.landing-content{padding:24px 16px 48px}.comparison-table{font-size:12px}.suite-badge .badge-prefix{display:none}.related-tools{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="header-brand">freeaicostcalculator.app</a>
+        <button class="theme-toggle">☀️</button>
+    </header>
+    <nav class="breadcrumb"><a href="/">Home</a> › How to budget LLM API spend</nav>
+    <article class="landing-content">
+        <h1>How to Budget LLM API Spend</h1>
+
+        <p>Most AI cost surprises come from the same root cause: the input numbers were guesses. Here is the workflow that produces realistic forecasts within ~10% of actual spend.</p>
+
+        <h2>Three rules</h2>
+        <ol>
+            <li><strong>Get a representative prompt + response sample.</strong> Use <a href="https://freetokencounter.app">freetokencounter.app</a> on a real prompt — not a guess — to count actual tokens. The numbers are usually higher than people expect, especially when system prompts, few-shot examples, or RAG context get added.</li>
+            <li><strong>Multiply by realistic monthly volume, not best-case.</strong> A 10× safety factor is reasonable when you're new to the space. A 2× factor is reasonable when you have real production data. Don't use the optimistic number from your pitch deck.</li>
+            <li><strong>Compare across models, not just providers.</strong> The same workload can vary 60× between GPT-5 mini and Claude Opus 4.7. Picking the right model for the task matters more than picking the right provider.</li>
+        </ol>
+
+        <h2>The workflow</h2>
+        <ol>
+            <li>Open <a href="https://freetokencounter.app">freetokencounter.app</a>. Paste a representative prompt (with system prompt, few-shot examples, and any RAG context if applicable). Note input token count.</li>
+            <li>Open <a href="https://freeprompttester.app">freeprompttester.app</a>. Run the same prompt against the 2-3 models you're considering. Note output token counts and quality.</li>
+            <li>Open freeaicostcalculator.app. Enter <code>requests/month × 10× safety</code>, your real input tokens, your real output tokens. Pick the candidate models. Read the bar chart.</li>
+            <li>Toggle the prompt-cache option to see how the picture changes if you implement caching (50% input discount is the conservative estimate).</li>
+            <li>Compare against flat plans in the break-even card. If a flat plan is cheaper for your usage and you don't need programmatic access, use the plan.</li>
+        </ol>
+
+        <h2>What to budget extra for</h2>
+        <ul>
+            <li><strong>Retries and failures</strong> — assume 5-10% extra spend on retried calls.</li>
+            <li><strong>Output length variance</strong> — average and 95th-percentile output lengths can differ by 3×. Budget for the higher number.</li>
+            <li><strong>System prompt growth</strong> — production system prompts tend to grow over time as you add edge-case instructions. Add 30% headroom.</li>
+            <li><strong>RAG context</strong> — if you're doing retrieval augmented generation, the context size dominates the bill. Cache aggressively.</li>
+            <li><strong>Streaming and partial responses</strong> — abandoned streams still consume input tokens (output stops at the abort point). For chatbot UIs with high abandonment, model this.</li>
+        </ul>
+
+        <h2>When to revisit the budget</h2>
+        <p>Monthly. Pricing changes (typically downward), models get released, and your usage patterns shift. The calculator is fast enough to re-run in 60 seconds — make it part of a monthly cost review.</p>
+        <div class="cta-box">
+            <h3>Try freeaicostcalculator.app — Free, No Sign-Up</h3>
+            <p>Workload-driven. 370+ models. Flat-plan break-even check. Pure arithmetic in your browser.</p>
+            <a href="/" class="cta-btn">Open AI Cost Calculator →</a>
+        </div>
+        <h2>Frequently Asked Questions</h2>
+        <details><summary>How wrong is my initial cost estimate likely to be?</summary><p>Without real token counts, expect 2-5× under-estimation. With real counts and reasonable output assumptions, expect ~10-20% error.</p></details>
+        <details><summary>Should I budget for the 95th-percentile case or average?</summary><p>95th-percentile if cost overruns are damaging. Average if cost overruns are tolerable. For most products, somewhere between (e.g., average × 1.5) is the right working number.</p></details>
+        <details><summary>How much can prompt caching save?</summary><p>Up to 90% on the cached portion of input. In practice, 30-60% reduction on total monthly bill for input-heavy workloads (long system prompts, RAG). The calculator's 50% toggle is a working middle estimate.</p></details>
+        <details><summary>Should I use the cheapest model that works?</summary><p>Usually yes, but watch quality. A 60× cheaper model that produces wrong answers 20% more often may not save money — you spend it on retries, support tickets, or worse, broken user experience. Run side-by-side comparisons in freeprompttester.app to validate.</p></details>
+        <details><summary>What about reasoning models — they cost more per call?</summary><p>Yes, but they often need fewer back-and-forth turns. For multi-step problems, a single GPT-5 or o4-mini call may replace 3-5 cheaper calls. Model end-to-end task cost, not per-call cost.</p></details>
+        <details><summary>Do I need to budget for OpenAI's new pricing tiers?</summary><p>Tiered pricing (cached vs uncached, different context windows) does change the math. The calculator's 50% cache toggle approximates this. For precision, run the calculator twice with different multipliers.</p></details>
+
+        <h2>More Free Tools from Freesuite</h2>
+        <div class="related-tools">
+            <a href="https://freetokencounter.app" class="related-tool-card"><div class="tool-name">freetokencounter.app</div><div class="tool-desc">Live token count for 100+ AI models</div></a>
+            <a href="https://freeprompttester.app" class="related-tool-card"><div class="tool-name">freeprompttester.app</div><div class="tool-desc">Side-by-side prompt comparison + chat</div></a>
+            <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">JSON formatter & validator</div></a>
+            <a href="https://freecsv2json.app" class="related-tool-card"><div class="tool-name">freecsv2json.app</div><div class="tool-desc">Bidirectional CSV ↔ JSON</div></a>
+            <a href="https://freeregextester.app" class="related-tool-card"><div class="tool-name">freeregextester.app</div><div class="tool-desc">Live regex tester</div></a>
+            <a href="https://freebase64.app" class="related-tool-card"><div class="tool-name">freebase64.app</div><div class="tool-desc">Base64 encode/decode</div></a>
+        </div>
+    </article>
+    <footer class="landing-footer">&copy; freeaicostcalculator.app</footer>
+    <a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener"><span class="badge-prefix">by </span>freesuite.app</a>
+    <script>
+    (()=>{const t=document.querySelector('.theme-toggle');const g=()=>localStorage.getItem('suite_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const a=v=>{document.documentElement.classList.toggle('dark',v==='dark');t.textContent=v==='dark'?'🌙':'☀️';localStorage.setItem('suite_theme',v)};a(g());t.addEventListener('click',()=>a(document.documentElement.classList.contains('dark')?'light':'dark'))})();
+    </script>
+</body>
+</html>

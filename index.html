@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Cost Calculator Online — freeaicostcalculator.app</title>
+    <meta name="description" content="Estimate monthly LLM API spend across GPT, Claude, Gemini, Grok and 370+ models. Workload-driven, with flat-plan break-even check. Free.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freeaicostcalculator.app/">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:title" content="Free AI Cost Calculator Online — freeaicostcalculator.app">
+    <meta property="og:description" content="Estimate monthly LLM API spend across GPT, Claude, Gemini, Grok and 370+ models. Workload-driven, with flat-plan break-even check. Free.">
+    <meta property="og:image" content="https://freeaicostcalculator.app/og-image.svg">
+    <meta property="og:url" content="https://freeaicostcalculator.app/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free AI Cost Calculator Online — freeaicostcalculator.app">
+    <meta name="twitter:description" content="Estimate monthly LLM API spend across GPT, Claude, Gemini, Grok and 370+ models. Workload-driven, with flat-plan break-even check. Free.">
+    <meta name="twitter:image" content="https://freeaicostcalculator.app/og-image.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "freeaicostcalculator.app",
+        "description": "Free AI cost calculator. Estimate monthly LLM API spend across GPT, Claude, Gemini, Grok, DeepSeek, Mistral, Cohere and 370+ OpenRouter models. Workload-driven (requests/month × avg tokens) with flat-plan break-even comparison.",
+        "url": "https://freeaicostcalculator.app/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "What is freeaicostcalculator.app?", "acceptedAnswer": { "@type": "Answer", "text": "freeaicostcalculator.app is a free, browser-based calculator that estimates your monthly LLM API spend across multiple AI models. You enter three numbers — requests per month, average input tokens per request, average output tokens per request — and pick which models to compare. The calculator shows per-model monthly cost, a horizontal bar chart, and a flat-plan break-even check against ChatGPT Plus, Claude Pro, Cursor and GitHub Copilot." } },
+            { "@type": "Question", "name": "How does freeaicostcalculator.app calculate cost?", "acceptedAnswer": { "@type": "Answer", "text": "Per-request cost equals (input tokens × input rate + output tokens × output rate) divided by one million, using each model's published per-million pricing. Monthly cost equals per-request cost multiplied by your requests-per-month input. The calculator does not call any AI provider — it is pure arithmetic on baked-in pricing data plus the live OpenRouter catalog fetched at page load." } },
+            { "@type": "Question", "name": "How is this different from freetokencounter.app?", "acceptedAnswer": { "@type": "Answer", "text": "freetokencounter.app answers the question 'how much does this specific text cost when sent to model X?' — you paste a prompt and see its tokens and the cost of that single call. freeaicostcalculator.app answers a different question: 'if I run a workload of N requests per month at average M tokens per request, what is my total monthly bill across these models?' One is for a specific prompt in your hand; the other is for planning and budgeting before you have a prompt." } },
+            { "@type": "Question", "name": "Which models does freeaicostcalculator.app support?", "acceptedAnswer": { "@type": "Answer", "text": "The curated catalog covers Anthropic (Claude Opus 4.7, Sonnet 4.6, Haiku 4.5), Google (Gemini 2.5 Pro, 2.5 Flash, 2.0 Flash), xAI (Grok 4, Grok 4 Fast, Grok 3), Mistral (Large 2, Medium 3, Small 3.1), DeepSeek (V3.1, R1), Groq-hosted Llama (Llama 4 Scout 17B, 3.3 70B, 3.1 8B), Cohere (Command A, R+, R) and OpenAI via OpenRouter (GPT-5, GPT-5 mini, GPT-4.1, o4-mini). On top of that, the OpenRouter tab loads the entire live catalog — 370+ models with pricing pulled directly from OpenRouter at page load." } },
+            { "@type": "Question", "name": "Should I use a flat plan like ChatGPT Plus instead of paying API rates?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on usage. ChatGPT Plus is $20 per month, ChatGPT Pro is $200 per month, Claude Pro is $20 per month, Claude Max is $100 or $200 per month, Cursor Pro is $20 per month, GitHub Copilot is $10 to $19 per month. freeaicostcalculator.app shows your projected API spend alongside these flat plans so you can spot break-even points. The honest caveat: flat plans are rate-limited chat products, not raw API access — they are not directly comparable when you need full programmatic access for a product or pipeline." } },
+            { "@type": "Question", "name": "Are the prices accurate?", "acceptedAnswer": { "@type": "Answer", "text": "freeaicostcalculator.app uses each provider's published per-million input and output rates baked into a static pricing object, plus the live OpenRouter catalog fetched on page load. Prices change occasionally; for production budgeting always verify against the provider's current pricing page. The pricing data is dated in the status bar so you can see how fresh it is." } },
+            { "@type": "Question", "name": "Does freeaicostcalculator.app need an API key?", "acceptedAnswer": { "@type": "Answer", "text": "No. freeaicostcalculator.app does not call any AI provider — it is a pure calculator. The only network request is a public, unauthenticated GET to OpenRouter's models endpoint (no key required) to populate the live catalog. No personal data is sent anywhere." } },
+            { "@type": "Question", "name": "Can I model prompt caching?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. freeaicostcalculator.app has an optional toggle that applies a 50% effective discount on the input portion of cost, modeling a typical cached-prompt workload. It is a simplification — actual cache savings depend on hit rate and provider (OpenAI typically 50%, Anthropic prompt cache up to 90% on cached portion). For precise modeling, run the calculation twice with different multipliers and split your traffic accordingly." } }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeaicostcalculator.app/" }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Freesuite",
+        "alternateName": "freesuite.app",
+        "url": "https://freesuite.app/",
+        "description": "Free, browser-based tools for documents, PDFs, images, text, and developer workflows. Every tool runs client-side with no sign-up.",
+        "sameAs": ["https://freesuite.app/"]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #faf9f6;
+            --surface: #f4f2ee;
+            --border: #e8e4dd;
+            --text-primary: #1a1917;
+            --text-secondary: #6b6760;
+            --text-muted: #9e9b96;
+            --accent: #C49A2A;
+            --accent-hover: #A8831F;
+            --accent-text: #ffffff;
+            --destructive: #c0392b;
+            --success: #27ae60;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            --font-body: 'Lora', serif;
+            --font-ui: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        html.dark {
+            --bg: #141412;
+            --surface: #1e1c1a;
+            --border: #2e2b27;
+            --text-primary: #f0ede8;
+            --text-secondary: #9e9b96;
+            --text-muted: #6b6760;
+            --accent: #D4A835;
+            --accent-hover: #C49A2A;
+            --accent-text: #ffffff;
+            --success: #2ecc71;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        html { font-size: 15px; line-height: 1.6; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-brand {
+            font-family: var(--font-ui);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .header-actions { display: flex; align-items: center; gap: 8px; }
+        .theme-toggle {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+        .theme-toggle:hover { background: var(--border); }
+
+        /* Buttons */
+        .btn {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-primary { background: var(--accent); color: var(--accent-text); }
+        .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+        .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+        .btn-secondary:hover:not(:disabled) { background: var(--surface); }
+
+        /* Inputs */
+        .input {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            transition: all 0.15s ease;
+            width: 100%;
+        }
+        .input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(196,154,42,0.12);
+        }
+
+        /* Layout */
+        .main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .panel-title {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .panel-title .panel-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+
+        /* Workload inputs */
+        .workload-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .workload-input-group { display: flex; flex-direction: column; gap: 6px; }
+        .workload-input-group label {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+        .workload-input-group label .value {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+        .workload-input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .workload-input-row .input { flex: 1; }
+        .preset-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .preset-btn {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .preset-btn:hover { background: var(--surface); color: var(--text-primary); }
+        .preset-btn.active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+        /* Cache toggle */
+        .cache-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .cache-row label { font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); cursor: pointer; }
+        .cache-row .help { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); margin-left: auto; }
+        input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; }
+
+        /* Selected models bar */
+        .selected-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            min-height: 40px;
+            align-items: center;
+        }
+        .selected-bar .selected-empty {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .selected-chip {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            background: var(--accent);
+            color: var(--accent-text);
+            border: none;
+            border-radius: 6px;
+            padding: 4px 6px 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .selected-chip .selected-chip-x {
+            background: rgba(255,255,255,0.2);
+            color: var(--accent-text);
+            border: none;
+            border-radius: 4px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .selected-chip .selected-chip-x:hover { background: rgba(255,255,255,0.4); }
+        .selected-chip .selected-chip-prov {
+            font-size: 10px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* Tabs */
+        .tab-strip {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        .tab-btn {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        /* Model search */
+        .model-search { display: none; margin-bottom: 10px; }
+        .model-search.visible { display: block; }
+        .model-filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .model-search-input {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            flex: 1;
+            min-width: 0;
+        }
+        .model-provider-select {
+            flex: 0 0 200px;
+            cursor: pointer;
+        }
+        @media (max-width: 540px) {
+            .model-provider-select { flex: 1 1 100%; }
+        }
+
+        /* Model grid */
+        .model-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .model-grid.no-scroll { max-height: none; overflow: visible; }
+        .model-empty {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 12px;
+        }
+        .model-chip {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+        .model-chip:hover { background: var(--surface); border-color: var(--text-muted); }
+        .model-chip.selected {
+            background: var(--accent);
+            color: var(--accent-text);
+            border-color: var(--accent);
+        }
+        .model-chip .provider-pill {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            opacity: 0.7;
+        }
+
+        /* Results */
+        .results-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .results-summary {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .results-summary strong { color: var(--text-primary); font-weight: 600; }
+        .sort-toggle {
+            display: flex;
+            gap: 4px;
+        }
+        .sort-toggle .sort-btn {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+        .sort-toggle .sort-btn.active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+        /* Bar chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+        .bar-row {
+            display: grid;
+            grid-template-columns: 200px 1fr 110px;
+            gap: 8px;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .bar-row:last-child { border-bottom: none; }
+        .bar-label {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-primary);
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+        }
+        .bar-label .bar-provider {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+        .bar-track {
+            background: var(--bg);
+            height: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            transition: width 0.2s ease;
+            border-radius: 4px;
+        }
+        .bar-value {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+        .bar-value-sub {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            text-align: right;
+            display: block;
+            font-weight: 400;
+        }
+
+        /* Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        .results-table th {
+            background: var(--bg);
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .results-table th.right { text-align: right; }
+        .results-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .results-table td.right {
+            text-align: right;
+            font-family: var(--font-mono);
+        }
+        .results-table tr:hover td { background: var(--bg); }
+        .results-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        /* Flat plan card */
+        .flat-plans {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .flat-plans h3 {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .flat-plans .flat-note {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        .flat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 8px;
+        }
+        .flat-card {
+            padding: 10px 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .flat-card .flat-name {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .flat-card .flat-price {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 2px 0;
+        }
+        .flat-card .flat-verdict {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .flat-card .flat-verdict.api-cheaper { color: var(--success); }
+        .flat-card .flat-verdict.plan-cheaper { color: var(--accent); }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+        }
+        .empty-state strong { color: var(--text-secondary); display: block; margin-bottom: 8px; font-size: 16px; }
+
+        /* Status bar */
+        .status-bar {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Suite badge */
+        .suite-badge {
+            position: fixed;
+            bottom: 40px;
+            right: 16px;
+            font-family: var(--font-ui);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            z-index: 30;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--text-primary);
+            color: var(--bg);
+            font-family: var(--font-ui);
+            font-size: 13px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: all 0.15s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* Upgrade prompt */
+        .upgrade-prompt {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+        .upgrade-prompt .upgrade-title { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+        .upgrade-prompt .upgrade-desc { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .upgrade-prompt .upgrade-link { font-family: var(--font-ui); font-size: 12px; color: var(--accent); text-decoration: none; margin-top: 4px; display: inline-block; }
+        .upgrade-prompt .upgrade-link:hover { text-decoration: underline; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* Action row */
+        .action-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* SEO */
+        .seo-content {
+            max-width: 760px;
+            margin: 48px auto 0;
+            padding: 64px 24px;
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            border-top: 1px solid var(--border);
+        }
+        .seo-content h1 { font-size: 28px; font-weight: 700; margin-bottom: 24px; line-height: 1.3; }
+        .seo-content h2 { font-size: 20px; font-weight: 600; margin-top: 32px; margin-bottom: 12px; }
+        .seo-content p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.7; }
+        .seo-content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-family: var(--font-ui); font-size: 13px; }
+        .seo-content th, .seo-content td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+        .seo-content th { font-weight: 600; color: var(--text-primary); }
+        .seo-content td { color: var(--text-secondary); }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+        .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+        .feature-card h3 { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+        .feature-card p { font-family: var(--font-ui); font-size: 12px; color: var(--text-secondary); margin: 0; }
+        .seo-content details { border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 8px; }
+        .seo-content summary { font-family: var(--font-ui); font-weight: 500; cursor: pointer; color: var(--text-primary); }
+        .seo-content details p { margin-top: 12px; margin-bottom: 0; font-family: var(--font-ui); font-size: 13px; }
+        .seo-footer { text-align: center; padding: 32px 24px; font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); }
+        .more-tools { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+        .more-tools-label { font-family: var(--font-ui); font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+        .more-tools-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .more-tools-links a { font-family: var(--font-ui); font-size: 12px; color: var(--accent); text-decoration: none; padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; transition: all 0.15s ease; }
+        .more-tools-links a:hover { background: var(--surface); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .main { padding: 16px; gap: 12px; }
+            .bar-row { grid-template-columns: 130px 1fr 90px; }
+            .bar-label .bar-provider { font-size: 9px; }
+            .suite-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-brand">freeaicostcalculator.app</a>
+    <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="toggle-icon">☀️</span>
+        </button>
+    </div>
+</header>
+
+<main class="main" id="app">
+
+    <section class="panel">
+        <div class="panel-title">
+            <span>Workload</span>
+            <span class="panel-meta">Tweak the numbers to match your usage</span>
+        </div>
+        <div class="workload-grid">
+            <div class="workload-input-group">
+                <label for="reqInput"><span>Requests per month</span><span class="value" id="reqValue">10,000</span></label>
+                <div class="workload-input-row">
+                    <input type="range" id="reqSlider" min="0" max="6" step="0.05" value="4">
+                    <input type="number" id="reqInput" class="input" min="1" step="1" value="10000">
+                </div>
+            </div>
+            <div class="workload-input-group">
+                <label for="inTokInput"><span>Avg input tokens / request</span><span class="value" id="inTokValue">500</span></label>
+                <div class="workload-input-row">
+                    <input type="range" id="inTokSlider" min="1" max="5" step="0.05" value="2.7">
+                    <input type="number" id="inTokInput" class="input" min="1" step="1" value="500">
+                </div>
+            </div>
+            <div class="workload-input-group">
+                <label for="outTokInput"><span>Avg output tokens / request</span><span class="value" id="outTokValue">200</span></label>
+                <div class="workload-input-row">
+                    <input type="range" id="outTokSlider" min="1" max="5" step="0.05" value="2.3">
+                    <input type="number" id="outTokInput" class="input" min="1" step="1" value="200">
+                </div>
+            </div>
+        </div>
+        <div class="preset-row">
+            <span style="font-family:var(--font-ui); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; align-self:center; margin-right: 4px;">Presets:</span>
+            <button class="preset-btn" data-preset="hobby">Side project · 1k/mo</button>
+            <button class="preset-btn" data-preset="indie">Indie SaaS · 50k/mo</button>
+            <button class="preset-btn" data-preset="prod">Production · 1M/mo</button>
+            <button class="preset-btn" data-preset="rag">RAG/long-context · 10k × 5k tokens</button>
+        </div>
+        <div class="cache-row">
+            <input type="checkbox" id="cacheToggle">
+            <label for="cacheToggle">Apply 50% prompt-cache discount on input</label>
+            <span class="help">Models OpenAI/Anthropic cached-prompt savings (typical hit rate)</span>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-title">
+            <span>Models <span class="panel-meta" id="modelCount">0 selected · max 12</span></span>
+            <span class="panel-meta">Direct catalog + 370+ via OpenRouter</span>
+        </div>
+        <div class="selected-bar" id="selectedBar"></div>
+        <div class="tab-strip" id="modelTabs"></div>
+        <div class="model-search" id="modelSearch">
+            <div class="model-filter-row">
+                <select id="modelProviderFilter" class="model-search-input model-provider-select" aria-label="Filter by provider">
+                    <option value="">All providers</option>
+                </select>
+                <input type="search" id="modelSearchInput" class="model-search-input" placeholder="Search by name or id…" autocomplete="off">
+            </div>
+        </div>
+        <div class="model-grid" id="modelGrid"></div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-title">
+            <span>Estimated monthly cost</span>
+        </div>
+        <div class="results-meta">
+            <div class="results-summary" id="resultsSummary">Pick at least one model to see costs.</div>
+            <div class="sort-toggle">
+                <button class="sort-btn active" data-sort="asc">Cheapest first</button>
+                <button class="sort-btn" data-sort="desc">Most expensive first</button>
+            </div>
+        </div>
+        <div class="bar-chart" id="barChart"></div>
+        <div class="results-table-wrap" id="tableWrap" style="display:none;">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Provider</th>
+                        <th class="right">Input $/M</th>
+                        <th class="right">Output $/M</th>
+                        <th class="right">Per request</th>
+                        <th class="right">Monthly</th>
+                        <th class="right">Yearly</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable"></tbody>
+            </table>
+        </div>
+        <div class="flat-plans" id="flatPlans" style="display:none;">
+            <h3>Flat plan break-even</h3>
+            <div class="flat-note">Flat plans are rate-limited chat products, not raw API access. Use this as a sanity check, not an apples-to-apples comparison.</div>
+            <div class="flat-grid" id="flatGrid"></div>
+        </div>
+        <div class="empty-state" id="emptyState">
+            <strong>Pick 1–12 models above to see estimated monthly costs.</strong>
+            Use the workload sliders to size your traffic. Defaults model a small product with 10k API requests per month.
+        </div>
+        <div class="action-row">
+            <button class="btn btn-secondary" id="copyBtn">Copy as Markdown</button>
+            <button class="btn btn-secondary" id="csvBtn">Download CSV</button>
+        </div>
+    </section>
+
+    <div class="upgrade-prompt">
+        <div class="upgrade-title">🔒 Workload templates + monthly forecasting</div>
+        <div class="upgrade-desc">Save named workloads, track real spend over time vs forecast, alert when projection overshoots budget. For ops/finance teams managing multi-team LLM budgets.</div>
+        <a href="https://freesuite.app" class="upgrade-link" target="_blank" rel="noopener">Unlock with freesuite.app · $2.88/mo</a>
+    </div>
+</main>
+
+<footer class="status-bar">
+    <span id="statusLeft">Pricing data current as of 2026-05-04 · all calculations run in your browser</span>
+    <span>No keys, no signup — pure arithmetic</span>
+</footer>
+
+<a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener">by freesuite.app</a>
+<div class="toast" id="toast"></div>
+
+<!-- SEO Content -->
+<div class="seo-content">
+    <h1>AI Cost Calculator — Estimate Monthly LLM API Spend Across GPT, Claude, Gemini and 370+ Models</h1>
+
+    <p>freeaicostcalculator.app is a free, browser-based calculator that estimates your monthly LLM API spend before you commit. You enter three numbers — requests per month, average input tokens per request, average output tokens per request — pick which models to compare from a curated catalog of 24 models across 8 providers (plus the entire OpenRouter live catalog of 370+ more), and immediately see per-model monthly cost, a horizontal bar-chart comparison, and a flat-plan break-even check against ChatGPT Plus, Claude Pro, Cursor and GitHub Copilot.</p>
+
+    <p>This is a planning and budgeting tool. Different from a token counter, which answers "how much does this specific text cost?" — freeaicostcalculator.app answers "if I run this workload at scale, what is my monthly bill across these models?" The calculation is pure arithmetic on each provider's published per-million pricing: per-request cost equals (input tokens × input rate + output tokens × output rate) divided by one million; monthly cost equals per-request cost multiplied by your requests-per-month input.</p>
+
+    <h2>How does freeaicostcalculator.app work?</h2>
+    <p>Drag the three sliders or type values into the workload panel. Pick 1 to 12 models from the picker — the OpenRouter tab loads the full live catalog (371+ models) on page load with pricing pulled inline, plus a provider sub-filter dropdown (OpenAI, Anthropic, Google, Meta/Llama, Mistral, DeepSeek, xAI, Cohere, Qwen, Perplexity, NVIDIA, MiniMax and 50 more) and a search box. The results panel updates instantly with a sorted bar chart, a detailed table, and a flat-plan break-even card. Toggle the "prompt cache" checkbox to model a 50% effective discount on input cost, which approximates what most production deployments actually pay.</p>
+
+    <h2>How is this different from a token counter?</h2>
+    <p>freetokencounter.app answers a per-prompt question: paste text, see tokens, see cost for one call. freeaicostcalculator.app answers a workload question: at N requests per month with M tokens average, what is the monthly bill across each model? Different intent — token counting is what you do when iterating on a prompt; cost calculation is what you do when sizing a budget or picking a model for a product. The two tools cross-link naturally: count tokens on a representative prompt with the token counter, then plug those numbers into the cost calculator to project monthly spend.</p>
+
+    <h2>Should I use a flat plan instead of paying API rates?</h2>
+    <p>It depends on usage. ChatGPT Plus is $20 per month, ChatGPT Pro is $200 per month, Claude Pro is $20 per month, Claude Max is $100 or $200 per month, Cursor Pro is $20 per month, GitHub Copilot is $10 to $19 per month. For light usage, a flat plan is almost always cheaper. For programmatic access at scale, the API is the only option because flat plans are rate-limited chat products without programmatic guarantees. freeaicostcalculator.app shows your projected API spend alongside flat-plan prices so you can spot the break-even point — but treat the comparison as informational, not direct.</p>
+
+    <h2>AI Model Pricing Comparison Matrix</h2>
+    <table>
+        <thead><tr><th>Model</th><th>Provider</th><th>Context</th><th>Input $/M</th><th>Output $/M</th></tr></thead>
+        <tbody>
+            <tr><td>Claude Opus 4.7</td><td>Anthropic</td><td>1M</td><td>$15</td><td>$75</td></tr>
+            <tr><td>Claude Sonnet 4.6</td><td>Anthropic</td><td>1M</td><td>$3</td><td>$15</td></tr>
+            <tr><td>Claude Haiku 4.5</td><td>Anthropic</td><td>200K</td><td>$1</td><td>$5</td></tr>
+            <tr><td>GPT-5</td><td>OpenAI (via OpenRouter)</td><td>400K</td><td>$1.25</td><td>$10</td></tr>
+            <tr><td>GPT-5 mini</td><td>OpenAI (via OpenRouter)</td><td>400K</td><td>$0.25</td><td>$2</td></tr>
+            <tr><td>GPT-4.1</td><td>OpenAI (via OpenRouter)</td><td>1M</td><td>$3</td><td>$12</td></tr>
+            <tr><td>Gemini 2.5 Pro</td><td>Google</td><td>1M</td><td>$1.25</td><td>$10</td></tr>
+            <tr><td>Gemini 2.5 Flash</td><td>Google</td><td>1M</td><td>$0.30</td><td>$2.50</td></tr>
+            <tr><td>Grok 4</td><td>xAI</td><td>256K</td><td>$5</td><td>$15</td></tr>
+            <tr><td>Grok 4 Fast</td><td>xAI</td><td>2M</td><td>$0.20</td><td>$0.50</td></tr>
+            <tr><td>DeepSeek V3.1</td><td>DeepSeek</td><td>128K</td><td>$0.27</td><td>$1.10</td></tr>
+            <tr><td>Llama 3.3 70B (Groq)</td><td>Groq</td><td>128K</td><td>$0.59</td><td>$0.79</td></tr>
+            <tr><td>Llama 3.1 8B (Groq)</td><td>Groq</td><td>128K</td><td>$0.05</td><td>$0.08</td></tr>
+            <tr><td>Mistral Large 2</td><td>Mistral</td><td>128K</td><td>$2</td><td>$6</td></tr>
+            <tr><td>Command A</td><td>Cohere</td><td>256K</td><td>$2.50</td><td>$10</td></tr>
+        </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--text-muted);">Prices as of 2026-05-04. Always verify against each provider's pricing page for production budgeting.</p>
+
+    <h2>Why use freeaicostcalculator.app?</h2>
+    <div class="feature-grid">
+        <div class="feature-card"><h3>Workload-driven</h3><p>Three numbers: requests, input tokens, output tokens. No fluff.</p></div>
+        <div class="feature-card"><h3>Flat-plan break-even</h3><p>Compare against ChatGPT Plus, Claude Pro, Cursor and GitHub Copilot.</p></div>
+        <div class="feature-card"><h3>370+ models live</h3><p>OpenRouter's full catalog with provider sub-filter and search.</p></div>
+        <div class="feature-card"><h3>No keys, no signup</h3><p>Pure arithmetic. The only network call is the public OpenRouter catalog.</p></div>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+        <summary>What is freeaicostcalculator.app?</summary>
+        <p>freeaicostcalculator.app is a free, browser-based calculator that estimates your monthly LLM API spend across multiple AI models. You enter three numbers — requests per month, average input tokens per request, average output tokens per request — and pick which models to compare. The calculator shows per-model monthly cost, a horizontal bar chart, and a flat-plan break-even check against ChatGPT Plus, Claude Pro, Cursor and GitHub Copilot.</p>
+    </details>
+    <details>
+        <summary>How does freeaicostcalculator.app calculate cost?</summary>
+        <p>Per-request cost equals (input tokens × input rate + output tokens × output rate) divided by one million, using each model's published per-million pricing. Monthly cost equals per-request cost multiplied by your requests-per-month input. The calculator does not call any AI provider — it is pure arithmetic on baked-in pricing data plus the live OpenRouter catalog fetched at page load.</p>
+    </details>
+    <details>
+        <summary>How is this different from freetokencounter.app?</summary>
+        <p>freetokencounter.app answers the question "how much does this specific text cost when sent to model X?" — you paste a prompt and see its tokens and the cost of that single call. freeaicostcalculator.app answers a different question: "if I run a workload of N requests per month at average M tokens per request, what is my total monthly bill across these models?" One is for a specific prompt in your hand; the other is for planning and budgeting before you have a prompt.</p>
+    </details>
+    <details>
+        <summary>Which models does freeaicostcalculator.app support?</summary>
+        <p>The curated catalog covers Anthropic (Claude Opus 4.7, Sonnet 4.6, Haiku 4.5), Google (Gemini 2.5 Pro, 2.5 Flash, 2.0 Flash), xAI (Grok 4, Grok 4 Fast, Grok 3), Mistral (Large 2, Medium 3, Small 3.1), DeepSeek (V3.1, R1), Groq-hosted Llama (Llama 4 Scout 17B, 3.3 70B, 3.1 8B), Cohere (Command A, R+, R) and OpenAI via OpenRouter (GPT-5, GPT-5 mini, GPT-4.1, o4-mini). On top of that, the OpenRouter tab loads the entire live catalog — 370+ models with pricing pulled directly from OpenRouter at page load.</p>
+    </details>
+    <details>
+        <summary>Should I use a flat plan like ChatGPT Plus instead of paying API rates?</summary>
+        <p>It depends on usage. ChatGPT Plus is $20 per month, ChatGPT Pro is $200 per month, Claude Pro is $20 per month, Claude Max is $100 or $200 per month, Cursor Pro is $20 per month, GitHub Copilot is $10 to $19 per month. freeaicostcalculator.app shows your projected API spend alongside these flat plans so you can spot break-even points. The honest caveat: flat plans are rate-limited chat products, not raw API access — they are not directly comparable when you need full programmatic access for a product or pipeline.</p>
+    </details>
+    <details>
+        <summary>Are the prices accurate?</summary>
+        <p>freeaicostcalculator.app uses each provider's published per-million input and output rates baked into a static pricing object, plus the live OpenRouter catalog fetched on page load. Prices change occasionally; for production budgeting always verify against the provider's current pricing page. The pricing data is dated in the status bar so you can see how fresh it is.</p>
+    </details>
+    <details>
+        <summary>Does freeaicostcalculator.app need an API key?</summary>
+        <p>No. freeaicostcalculator.app does not call any AI provider — it is a pure calculator. The only network request is a public, unauthenticated GET to OpenRouter's models endpoint (no key required) to populate the live catalog. No personal data is sent anywhere.</p>
+    </details>
+    <details>
+        <summary>Can I model prompt caching?</summary>
+        <p>Yes. freeaicostcalculator.app has an optional toggle that applies a 50% effective discount on the input portion of cost, modeling a typical cached-prompt workload. It is a simplification — actual cache savings depend on hit rate and provider (OpenAI typically 50%, Anthropic prompt cache up to 90% on cached portion). For precise modeling, run the calculation twice with different multipliers and split your traffic accordingly.</p>
+    </details>
+</div>
+
+<footer class="seo-footer">
+    &copy; freeaicostcalculator.app
+    <div class="more-tools">
+        <div class="more-tools-label">More free tools from Freesuite</div>
+        <div class="more-tools-links">
+            <a href="https://freetokencounter.app">AI Token Counter</a>
+            <a href="https://freeprompttester.app">AI Prompt Tester</a>
+            <a href="https://freejsonformatter.app">JSON Formatter</a>
+            <a href="https://freecsv2json.app">CSV to JSON</a>
+            <a href="https://freeregextester.app">Regex Tester</a>
+            <a href="https://freebase64.app">Base64</a>
+            <a href="https://freewordcounter.app">Word Counter</a>
+            <a href="https://freesuite.app">All tools</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ===== Theme ===== */
+(() => {
+    const toggle = document.getElementById('themeToggle');
+    const icon = toggle.querySelector('.toggle-icon');
+    const getTheme = () => {
+        const stored = localStorage.getItem('suite_theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const applyTheme = (theme) => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('suite_theme', theme);
+    };
+    applyTheme(getTheme());
+    toggle.addEventListener('click', () => {
+        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+})();
+
+const showToast = (msg) => {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+};
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+        reg.addEventListener('updatefound', () => {
+            const sw = reg.installing;
+            sw.addEventListener('statechange', () => {
+                if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+                    showToast('Update available — refreshing...');
+                    sw.postMessage('skipWaiting');
+                }
+            });
+        });
+    }).catch(() => {});
+    navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+}
+
+/* ============================================================
+   MODEL CATALOG (curated, identical to freeprompttester.app)
+   ============================================================ */
+const MODELS = [
+    // Anthropic
+    { id: 'anthropic:claude-opus-4-5', label: 'Claude Opus 4.7', provider: 'anthropic', apiId: 'claude-opus-4-5', ctx: 1000000, priceIn: 15, priceOut: 75, popular: true },
+    { id: 'anthropic:claude-sonnet-4-5', label: 'Claude Sonnet 4.6', provider: 'anthropic', apiId: 'claude-sonnet-4-5', ctx: 1000000, priceIn: 3, priceOut: 15, popular: true },
+    { id: 'anthropic:claude-haiku-4-5', label: 'Claude Haiku 4.5', provider: 'anthropic', apiId: 'claude-haiku-4-5', ctx: 200000, priceIn: 1, priceOut: 5 },
+    // Google
+    { id: 'google:gemini-2.5-pro', label: 'Gemini 2.5 Pro', provider: 'google', apiId: 'gemini-2.5-pro', ctx: 1000000, priceIn: 1.25, priceOut: 10 },
+    { id: 'google:gemini-2.5-flash', label: 'Gemini 2.5 Flash', provider: 'google', apiId: 'gemini-2.5-flash', ctx: 1000000, priceIn: 0.30, priceOut: 2.50, popular: true },
+    { id: 'google:gemini-2.0-flash', label: 'Gemini 2.0 Flash', provider: 'google', apiId: 'gemini-2.0-flash', ctx: 1000000, priceIn: 0.10, priceOut: 0.40 },
+    // xAI
+    { id: 'xai:grok-4', label: 'Grok 4', provider: 'xai', apiId: 'grok-4', ctx: 256000, priceIn: 5, priceOut: 15 },
+    { id: 'xai:grok-4-fast', label: 'Grok 4 Fast', provider: 'xai', apiId: 'grok-4-fast', ctx: 2000000, priceIn: 0.20, priceOut: 0.50 },
+    { id: 'xai:grok-3', label: 'Grok 3', provider: 'xai', apiId: 'grok-3', ctx: 131072, priceIn: 3, priceOut: 15 },
+    // Mistral
+    { id: 'mistral:mistral-large-latest', label: 'Mistral Large 2', provider: 'mistral', apiId: 'mistral-large-latest', ctx: 128000, priceIn: 2, priceOut: 6 },
+    { id: 'mistral:mistral-medium-latest', label: 'Mistral Medium 3', provider: 'mistral', apiId: 'mistral-medium-latest', ctx: 128000, priceIn: 0.40, priceOut: 2 },
+    { id: 'mistral:mistral-small-latest', label: 'Mistral Small 3.1', provider: 'mistral', apiId: 'mistral-small-latest', ctx: 128000, priceIn: 0.10, priceOut: 0.30 },
+    // DeepSeek
+    { id: 'deepseek:deepseek-chat', label: 'DeepSeek V3.1', provider: 'deepseek', apiId: 'deepseek-chat', ctx: 128000, priceIn: 0.27, priceOut: 1.10 },
+    { id: 'deepseek:deepseek-reasoner', label: 'DeepSeek R1', provider: 'deepseek', apiId: 'deepseek-reasoner', ctx: 128000, priceIn: 0.55, priceOut: 2.19 },
+    // Groq
+    { id: 'groq:llama-4-scout-17b', label: 'Llama 4 Scout 17B', provider: 'groq', apiId: 'meta-llama/llama-4-scout-17b-16e-instruct', ctx: 128000, priceIn: 0.11, priceOut: 0.34 },
+    { id: 'groq:llama-3.3-70b', label: 'Llama 3.3 70B', provider: 'groq', apiId: 'llama-3.3-70b-versatile', ctx: 128000, priceIn: 0.59, priceOut: 0.79, popular: true },
+    { id: 'groq:llama-3.1-8b', label: 'Llama 3.1 8B', provider: 'groq', apiId: 'llama-3.1-8b-instant', ctx: 128000, priceIn: 0.05, priceOut: 0.08 },
+    // Cohere
+    { id: 'cohere:command-a-03-2025', label: 'Command A', provider: 'cohere', apiId: 'command-a-03-2025', ctx: 256000, priceIn: 2.50, priceOut: 10 },
+    { id: 'cohere:command-r-plus', label: 'Command R+', provider: 'cohere', apiId: 'command-r-plus', ctx: 128000, priceIn: 2.50, priceOut: 10 },
+    { id: 'cohere:command-r', label: 'Command R', provider: 'cohere', apiId: 'command-r', ctx: 128000, priceIn: 0.15, priceOut: 0.60 },
+    // OpenRouter (curated)
+    { id: 'openrouter:openai/gpt-5', label: 'GPT-5 (OpenRouter)', provider: 'openrouter', apiId: 'openai/gpt-5', ctx: 400000, priceIn: 1.25, priceOut: 10 },
+    { id: 'openrouter:openai/gpt-5-mini', label: 'GPT-5 mini (OpenRouter)', provider: 'openrouter', apiId: 'openai/gpt-5-mini', ctx: 400000, priceIn: 0.25, priceOut: 2, popular: true },
+    { id: 'openrouter:openai/gpt-4.1', label: 'GPT-4.1 (OpenRouter)', provider: 'openrouter', apiId: 'openai/gpt-4.1', ctx: 1000000, priceIn: 3, priceOut: 12 },
+    { id: 'openrouter:openai/o4-mini', label: 'o4-mini (OpenRouter)', provider: 'openrouter', apiId: 'openai/o4-mini', ctx: 200000, priceIn: 1.10, priceOut: 4.40 },
+];
+
+const PROVIDER_INFO = {
+    anthropic: { name: 'Anthropic' },
+    google: { name: 'Google AI' },
+    xai: { name: 'xAI' },
+    mistral: { name: 'Mistral' },
+    deepseek: { name: 'DeepSeek' },
+    groq: { name: 'Groq' },
+    cohere: { name: 'Cohere' },
+    openrouter: { name: 'OpenRouter' },
+};
+const PROVIDER_ORDER = ['anthropic', 'google', 'xai', 'mistral', 'deepseek', 'groq', 'cohere', 'openrouter'];
+
+let OPENROUTER_LIVE = [];
+
+const OR_PROVIDER_LABELS = {
+    'openai': 'OpenAI', 'anthropic': 'Anthropic', 'google': 'Google',
+    'meta-llama': 'Meta (Llama)', 'mistralai': 'Mistral', 'deepseek': 'DeepSeek',
+    'x-ai': 'xAI', 'cohere': 'Cohere', 'perplexity': 'Perplexity',
+    'qwen': 'Qwen (Alibaba)', 'nvidia': 'NVIDIA', 'microsoft': 'Microsoft',
+    'amazon': 'Amazon', 'inflection': 'Inflection', 'moonshotai': 'Moonshot',
+    'minimax': 'MiniMax', 'nousresearch': 'Nous Research', 'openrouter': 'OpenRouter',
+    'liquid': 'Liquid', 'inception': 'Inception', 'z-ai': 'Z.AI',
+    'arcee-ai': 'Arcee', 'baidu': 'Baidu',
+};
+
+function orProviderOf(apiId) {
+    const slash = apiId.indexOf('/');
+    return slash > 0 ? apiId.slice(0, slash) : 'unknown';
+}
+
+function orProviderList() {
+    const counts = {};
+    for (const m of OPENROUTER_LIVE) {
+        const p = orProviderOf(m.apiId);
+        counts[p] = (counts[p] || 0) + 1;
+    }
+    return Object.entries(counts)
+        .sort(([a, ac], [b, bc]) => bc - ac || a.localeCompare(b))
+        .map(([id, count]) => ({ id, label: OR_PROVIDER_LABELS[id] || id, count }));
+}
+
+async function loadOpenRouterModels() {
+    try {
+        const res = await fetch('https://openrouter.ai/api/v1/models');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!Array.isArray(data?.data)) return;
+        OPENROUTER_LIVE = data.data
+            .filter(m => m && m.id && m.context_length)
+            .map(m => {
+                const p = m.pricing || {};
+                return {
+                    id: 'openrouter:' + m.id,
+                    apiId: m.id,
+                    label: m.name || m.id,
+                    provider: 'openrouter',
+                    ctx: m.context_length,
+                    priceIn: parseFloat(p.prompt || '0') * 1e6,
+                    priceOut: parseFloat(p.completion || '0') * 1e6,
+                    popular: false,
+                };
+            })
+            .sort((a, b) => a.label.localeCompare(b.label));
+        if (State.activeTab === 'openrouter' || State.activeTab === 'all') renderModels();
+        renderSelectedBar();
+        recompute();
+    } catch {}
+}
+
+function findModel(id) {
+    return MODELS.find(m => m.id === id) || OPENROUTER_LIVE.find(m => m.id === id);
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const State = {
+    selected: JSON.parse(localStorage.getItem('aicostcalc_models') || 'null') || [
+        'anthropic:claude-sonnet-4-5',
+        'openrouter:openai/gpt-5-mini',
+        'google:gemini-2.5-flash',
+        'groq:llama-3.3-70b',
+    ],
+    workload: JSON.parse(localStorage.getItem('aicostcalc_volume') || 'null') || {
+        requestsPerMonth: 10000,
+        avgInTokens: 500,
+        avgOutTokens: 200,
+    },
+    useCache: localStorage.getItem('aicostcalc_cache') === '1',
+    sortDir: 'asc',
+    activeTab: 'popular',
+    search: '',
+    orProvider: '',
+};
+
+const saveState = () => {
+    localStorage.setItem('aicostcalc_models', JSON.stringify(State.selected));
+    localStorage.setItem('aicostcalc_volume', JSON.stringify(State.workload));
+    localStorage.setItem('aicostcalc_cache', State.useCache ? '1' : '0');
+};
+
+/* ============================================================
+   COST ENGINE
+   ============================================================ */
+function computeRow(model) {
+    const { requestsPerMonth, avgInTokens, avgOutTokens } = State.workload;
+    const inMult = State.useCache ? 0.5 : 1;
+    const inputPerReq = (avgInTokens * model.priceIn * inMult) / 1_000_000;
+    const outputPerReq = (avgOutTokens * model.priceOut) / 1_000_000;
+    const perRequest = inputPerReq + outputPerReq;
+    const monthly = perRequest * requestsPerMonth;
+    return {
+        model,
+        inputPerReq,
+        outputPerReq,
+        perRequest,
+        monthly,
+        yearly: monthly * 12,
+    };
+}
+
+function formatCurrency(amount) {
+    if (amount >= 100) return '$' + amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (amount >= 1) return '$' + amount.toFixed(2);
+    if (amount >= 0.001) return '$' + amount.toFixed(4);
+    return '$' + amount.toExponential(2);
+}
+
+function formatNumber(n) {
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1) + 'M';
+    if (n >= 1_000) return (n / 1_000).toFixed(n >= 10_000 ? 0 : 1) + 'k';
+    return Math.round(n).toString();
+}
+
+/* ============================================================
+   UI — model picker (same pattern as prompttester)
+   ============================================================ */
+const TABS = [
+    { id: 'popular', label: 'Popular' },
+    ...PROVIDER_ORDER.map(p => ({ id: p, label: PROVIDER_INFO[p].name })),
+    { id: 'all', label: 'All' },
+];
+
+function renderTabs() {
+    const el = document.getElementById('modelTabs');
+    el.innerHTML = '';
+    for (const t of TABS) {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (t.id === State.activeTab ? ' active' : '');
+        btn.textContent = t.label;
+        btn.addEventListener('click', () => {
+            State.activeTab = t.id;
+            State.search = '';
+            State.orProvider = '';
+            const inp = document.getElementById('modelSearchInput');
+            if (inp) inp.value = '';
+            renderTabs();
+            renderModels();
+        });
+        el.appendChild(btn);
+    }
+}
+
+function modelsForTab() {
+    let list;
+    if (State.activeTab === 'all') {
+        const seen = new Set();
+        list = [];
+        for (const m of [...MODELS, ...OPENROUTER_LIVE]) {
+            if (!seen.has(m.id)) { seen.add(m.id); list.push(m); }
+        }
+    } else if (State.activeTab === 'popular') {
+        list = MODELS.filter(m => m.popular);
+    } else if (State.activeTab === 'openrouter') {
+        list = OPENROUTER_LIVE.length > 0 ? OPENROUTER_LIVE : MODELS.filter(m => m.provider === 'openrouter');
+        if (State.orProvider) list = list.filter(m => orProviderOf(m.apiId) === State.orProvider);
+    } else {
+        list = MODELS.filter(m => m.provider === State.activeTab);
+    }
+    if (State.search) {
+        const q = State.search.toLowerCase();
+        list = list.filter(m => m.label.toLowerCase().includes(q) || (m.apiId || '').toLowerCase().includes(q));
+    }
+    return list;
+}
+
+function populateOrProviderSelect() {
+    const sel = document.getElementById('modelProviderFilter');
+    if (State.activeTab !== 'openrouter') {
+        sel.style.display = 'none';
+        return;
+    }
+    sel.style.display = '';
+    const providers = orProviderList();
+    const total = OPENROUTER_LIVE.length;
+    const wantValue = State.orProvider;
+    const html = ['<option value="">All providers' + (total ? ` (${total})` : '') + '</option>']
+        .concat(providers.map(p => `<option value="${p.id}"${p.id === wantValue ? ' selected' : ''}>${p.label} (${p.count})</option>`))
+        .join('');
+    if (sel.dataset.signature !== html) {
+        sel.innerHTML = html;
+        sel.dataset.signature = html;
+    }
+    sel.value = wantValue || '';
+}
+
+function renderModels() {
+    const grid = document.getElementById('modelGrid');
+    const searchWrap = document.getElementById('modelSearch');
+    const showSearch = State.activeTab === 'openrouter' || State.activeTab === 'all';
+    searchWrap.classList.toggle('visible', showSearch);
+    grid.classList.toggle('no-scroll', !showSearch);
+    populateOrProviderSelect();
+
+    grid.innerHTML = '';
+    const list = modelsForTab();
+    if (list.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'model-empty';
+        empty.textContent = State.search ? `No models match "${State.search}".` : (State.activeTab === 'openrouter' ? 'Loading OpenRouter models…' : 'No models in this tab.');
+        grid.appendChild(empty);
+    } else {
+        const sorted = [...list].sort((a, b) => {
+            const aSel = State.selected.includes(a.id) ? 0 : 1;
+            const bSel = State.selected.includes(b.id) ? 0 : 1;
+            return aSel - bSel;
+        });
+        const MAX = 200;
+        const visible = (sorted.length > MAX && !State.search) ? sorted.slice(0, MAX) : sorted;
+        for (const m of visible) {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'model-chip' + (State.selected.includes(m.id) ? ' selected' : '');
+            const ctxStr = m.ctx ? (m.ctx >= 1000 ? Math.round(m.ctx/1000)+'K' : m.ctx) : '?';
+            const priceStr = (m.priceIn || m.priceOut)
+                ? `$${(m.priceIn || 0).toFixed(2)}/$${(m.priceOut || 0).toFixed(2)} per M`
+                : 'free';
+            chip.title = `${m.apiId || m.id} · ${ctxStr} ctx · ${priceStr}`;
+            chip.innerHTML = `<span>${m.label}</span><span class="provider-pill">${m.provider}</span>`;
+            chip.addEventListener('click', () => toggleModel(m.id));
+            grid.appendChild(chip);
+        }
+        if (sorted.length > MAX && !State.search) {
+            const more = document.createElement('div');
+            more.className = 'model-empty';
+            more.textContent = `…and ${sorted.length - MAX} more. Use search to find a specific model.`;
+            grid.appendChild(more);
+        }
+    }
+    document.getElementById('modelCount').textContent =
+        State.activeTab === 'openrouter' && OPENROUTER_LIVE.length
+            ? `${State.selected.length} selected · max 12 · ${OPENROUTER_LIVE.length} OpenRouter models`
+            : `${State.selected.length} selected · max 12`;
+}
+
+function toggleModel(id) {
+    const idx = State.selected.indexOf(id);
+    if (idx >= 0) {
+        State.selected.splice(idx, 1);
+    } else {
+        if (State.selected.length >= 12) {
+            showToast('Max 12 models. Remove one first.');
+            return;
+        }
+        State.selected.push(id);
+    }
+    saveState();
+    renderModels();
+    renderSelectedBar();
+    recompute();
+}
+
+function renderSelectedBar() {
+    const bar = document.getElementById('selectedBar');
+    bar.innerHTML = '';
+    if (State.selected.length === 0) {
+        const empty = document.createElement('span');
+        empty.className = 'selected-empty';
+        empty.textContent = 'No models selected — pick from the tabs below.';
+        bar.appendChild(empty);
+        return;
+    }
+    for (const id of State.selected) {
+        const m = findModel(id);
+        const chip = document.createElement('span');
+        chip.className = 'selected-chip';
+        const label = m ? m.label : id;
+        const prov = m ? m.provider : '?';
+        chip.innerHTML = `<span>${label}</span><span class="selected-chip-prov">${prov}</span><button class="selected-chip-x" aria-label="Remove ${label}">×</button>`;
+        chip.querySelector('.selected-chip-x').addEventListener('click', () => toggleModel(id));
+        bar.appendChild(chip);
+    }
+}
+
+/* ============================================================
+   UI — workload sliders
+   ============================================================ */
+function sliderToValue(sliderValue, min, max) {
+    // log scale: slider 0..6 maps to 1..1,000,000 if min=0, max=6
+    const minLog = Math.log10(min);
+    const maxLog = Math.log10(max);
+    return Math.round(Math.pow(10, parseFloat(sliderValue)));
+}
+function valueToSlider(v) { return Math.log10(Math.max(1, v)); }
+
+function setReq(value, fromSlider) {
+    State.workload.requestsPerMonth = Math.max(1, Math.round(value));
+    document.getElementById('reqValue').textContent = State.workload.requestsPerMonth.toLocaleString();
+    document.getElementById('reqInput').value = State.workload.requestsPerMonth;
+    if (!fromSlider) document.getElementById('reqSlider').value = valueToSlider(State.workload.requestsPerMonth);
+    saveState();
+    recompute();
+}
+function setIn(value, fromSlider) {
+    State.workload.avgInTokens = Math.max(1, Math.round(value));
+    document.getElementById('inTokValue').textContent = State.workload.avgInTokens.toLocaleString();
+    document.getElementById('inTokInput').value = State.workload.avgInTokens;
+    if (!fromSlider) document.getElementById('inTokSlider').value = valueToSlider(State.workload.avgInTokens);
+    saveState();
+    recompute();
+}
+function setOut(value, fromSlider) {
+    State.workload.avgOutTokens = Math.max(1, Math.round(value));
+    document.getElementById('outTokValue').textContent = State.workload.avgOutTokens.toLocaleString();
+    document.getElementById('outTokInput').value = State.workload.avgOutTokens;
+    if (!fromSlider) document.getElementById('outTokSlider').value = valueToSlider(State.workload.avgOutTokens);
+    saveState();
+    recompute();
+}
+
+const PRESETS = {
+    hobby: { req: 1000, inT: 300, outT: 150 },
+    indie: { req: 50000, inT: 800, outT: 300 },
+    prod: { req: 1000000, inT: 1500, outT: 500 },
+    rag: { req: 10000, inT: 5000, outT: 800 },
+};
+
+function applyPreset(name) {
+    const p = PRESETS[name];
+    if (!p) return;
+    setReq(p.req);
+    setIn(p.inT);
+    setOut(p.outT);
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === name));
+}
+
+/* ============================================================
+   UI — results
+   ============================================================ */
+const FLAT_PLANS = [
+    { name: 'ChatGPT Plus', price: 20, note: 'Rate-limited chat' },
+    { name: 'ChatGPT Pro', price: 200, note: 'Unlimited GPT-5 / o-series' },
+    { name: 'Claude Pro', price: 20, note: 'Rate-limited chat' },
+    { name: 'Claude Max 5x', price: 100, note: '5× Pro limits' },
+    { name: 'Claude Max 20x', price: 200, note: '20× Pro limits' },
+    { name: 'Cursor Pro', price: 20, note: 'Editor + 500 fast req/mo' },
+    { name: 'GitHub Copilot', price: 19, note: 'Code completion + chat' },
+];
+
+function recompute() {
+    const empty = document.getElementById('emptyState');
+    const tableWrap = document.getElementById('tableWrap');
+    const flatPlans = document.getElementById('flatPlans');
+    const summary = document.getElementById('resultsSummary');
+    const barChart = document.getElementById('barChart');
+
+    if (State.selected.length === 0) {
+        empty.style.display = '';
+        tableWrap.style.display = 'none';
+        flatPlans.style.display = 'none';
+        barChart.innerHTML = '';
+        summary.textContent = 'Pick at least one model to see costs.';
+        return;
+    }
+
+    const rows = State.selected
+        .map(id => findModel(id))
+        .filter(Boolean)
+        .map(computeRow);
+
+    if (rows.length === 0) {
+        empty.style.display = '';
+        tableWrap.style.display = 'none';
+        flatPlans.style.display = 'none';
+        barChart.innerHTML = '';
+        return;
+    }
+
+    empty.style.display = 'none';
+    tableWrap.style.display = '';
+    flatPlans.style.display = '';
+
+    rows.sort((a, b) => State.sortDir === 'asc' ? a.monthly - b.monthly : b.monthly - a.monthly);
+    const maxCost = Math.max(...rows.map(r => r.monthly));
+    const totalAcrossSelected = rows.reduce((s, r) => s + r.monthly, 0);
+    const cheapest = rows.reduce((a, b) => a.monthly < b.monthly ? a : b);
+
+    summary.innerHTML = `Cheapest: <strong>${cheapest.model.label}</strong> at <strong>${formatCurrency(cheapest.monthly)}/mo</strong>. Sum across all selected: <strong>${formatCurrency(totalAcrossSelected)}/mo</strong>.`;
+
+    // Bar chart
+    barChart.innerHTML = '';
+    for (const r of rows) {
+        const pct = maxCost > 0 ? (r.monthly / maxCost) * 100 : 0;
+        const row = document.createElement('div');
+        row.className = 'bar-row';
+        row.innerHTML = `
+            <div class="bar-label">
+                <span>${r.model.label}</span>
+                <span class="bar-provider">${r.model.provider}</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+            <div>
+                <div class="bar-value">${formatCurrency(r.monthly)}</div>
+                <div class="bar-value-sub">${formatCurrency(r.perRequest)}/req</div>
+            </div>
+        `;
+        barChart.appendChild(row);
+    }
+
+    // Table
+    const tbody = document.getElementById('resultsTable');
+    tbody.innerHTML = '';
+    for (const r of rows) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${r.model.label}</td>
+            <td>${r.model.provider}</td>
+            <td class="right">$${(r.model.priceIn || 0).toFixed(2)}</td>
+            <td class="right">$${(r.model.priceOut || 0).toFixed(2)}</td>
+            <td class="right">${formatCurrency(r.perRequest)}</td>
+            <td class="right">${formatCurrency(r.monthly)}</td>
+            <td class="right">${formatCurrency(r.yearly)}</td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    // Flat plans
+    const flatGrid = document.getElementById('flatGrid');
+    flatGrid.innerHTML = '';
+    for (const p of FLAT_PLANS) {
+        const apiCheaper = cheapest.monthly < p.price;
+        const verdict = apiCheaper
+            ? `Cheapest API model is ${formatCurrency(p.price - cheapest.monthly)} cheaper`
+            : `${formatCurrency(cheapest.monthly - p.price)}/mo more than this plan`;
+        const cls = apiCheaper ? 'api-cheaper' : 'plan-cheaper';
+        const card = document.createElement('div');
+        card.className = 'flat-card';
+        card.innerHTML = `
+            <div class="flat-name">${p.name}</div>
+            <div class="flat-price">$${p.price}/mo</div>
+            <div class="flat-verdict ${cls}">${verdict}</div>
+            <div class="flat-verdict" style="font-size:10px; margin-top:4px;">${p.note}</div>
+        `;
+        flatGrid.appendChild(card);
+    }
+}
+
+/* ============================================================
+   Export
+   ============================================================ */
+function buildResultsForExport() {
+    const rows = State.selected.map(id => findModel(id)).filter(Boolean).map(computeRow);
+    rows.sort((a, b) => State.sortDir === 'asc' ? a.monthly - b.monthly : b.monthly - a.monthly);
+    return rows;
+}
+
+function copyMarkdown() {
+    const rows = buildResultsForExport();
+    if (rows.length === 0) { showToast('Pick at least one model.'); return; }
+    const wl = State.workload;
+    const cache = State.useCache ? ' (with prompt cache @ 50%)' : '';
+    let md = `# AI cost estimate${cache}\n\nWorkload: ${wl.requestsPerMonth.toLocaleString()} req/mo · ${wl.avgInTokens} avg input tokens · ${wl.avgOutTokens} avg output tokens\n\n`;
+    md += '| Model | Provider | $/M in | $/M out | Per request | Monthly | Yearly |\n';
+    md += '|---|---|---:|---:|---:|---:|---:|\n';
+    for (const r of rows) {
+        md += `| ${r.model.label} | ${r.model.provider} | $${(r.model.priceIn || 0).toFixed(2)} | $${(r.model.priceOut || 0).toFixed(2)} | ${formatCurrency(r.perRequest)} | ${formatCurrency(r.monthly)} | ${formatCurrency(r.yearly)} |\n`;
+    }
+    navigator.clipboard.writeText(md).then(() => showToast('Copied as Markdown.')).catch(() => showToast('Copy failed.'));
+}
+
+function downloadCsv() {
+    const rows = buildResultsForExport();
+    if (rows.length === 0) { showToast('Pick at least one model.'); return; }
+    const wl = State.workload;
+    const lines = ['model,provider,price_in_per_M,price_out_per_M,per_request,monthly,yearly'];
+    for (const r of rows) {
+        lines.push([
+            JSON.stringify(r.model.label),
+            r.model.provider,
+            r.model.priceIn,
+            r.model.priceOut,
+            r.perRequest.toFixed(6),
+            r.monthly.toFixed(4),
+            r.yearly.toFixed(4),
+        ].join(','));
+    }
+    const csv = `# Workload: ${wl.requestsPerMonth} req/mo, ${wl.avgInTokens} avg input, ${wl.avgOutTokens} avg output${State.useCache ? ', cache 50%' : ''}\n` + lines.join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ai-cost-estimate.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('CSV downloaded.');
+}
+
+/* ============================================================
+   Init
+   ============================================================ */
+(function init() {
+    renderTabs();
+    renderModels();
+    renderSelectedBar();
+
+    // Workload sliders
+    const reqSlider = document.getElementById('reqSlider');
+    const reqInput = document.getElementById('reqInput');
+    const inSlider = document.getElementById('inTokSlider');
+    const inInput = document.getElementById('inTokInput');
+    const outSlider = document.getElementById('outTokSlider');
+    const outInput = document.getElementById('outTokInput');
+
+    reqSlider.value = valueToSlider(State.workload.requestsPerMonth);
+    inSlider.value = valueToSlider(State.workload.avgInTokens);
+    outSlider.value = valueToSlider(State.workload.avgOutTokens);
+    reqInput.value = State.workload.requestsPerMonth;
+    inInput.value = State.workload.avgInTokens;
+    outInput.value = State.workload.avgOutTokens;
+    document.getElementById('reqValue').textContent = State.workload.requestsPerMonth.toLocaleString();
+    document.getElementById('inTokValue').textContent = State.workload.avgInTokens.toLocaleString();
+    document.getElementById('outTokValue').textContent = State.workload.avgOutTokens.toLocaleString();
+
+    reqSlider.addEventListener('input', e => setReq(Math.pow(10, parseFloat(e.target.value)), true));
+    inSlider.addEventListener('input', e => setIn(Math.pow(10, parseFloat(e.target.value)), true));
+    outSlider.addEventListener('input', e => setOut(Math.pow(10, parseFloat(e.target.value)), true));
+    reqInput.addEventListener('input', e => setReq(parseInt(e.target.value) || 1, false));
+    inInput.addEventListener('input', e => setIn(parseInt(e.target.value) || 1, false));
+    outInput.addEventListener('input', e => setOut(parseInt(e.target.value) || 1, false));
+
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach(b => {
+        b.addEventListener('click', () => applyPreset(b.dataset.preset));
+    });
+
+    // Cache toggle
+    const cb = document.getElementById('cacheToggle');
+    cb.checked = State.useCache;
+    cb.addEventListener('change', () => {
+        State.useCache = cb.checked;
+        saveState();
+        recompute();
+    });
+
+    // Sort toggle
+    document.querySelectorAll('.sort-btn').forEach(b => {
+        b.addEventListener('click', () => {
+            State.sortDir = b.dataset.sort;
+            document.querySelectorAll('.sort-btn').forEach(x => x.classList.toggle('active', x.dataset.sort === State.sortDir));
+            recompute();
+        });
+    });
+
+    // Model search/filter
+    let searchTimer = null;
+    document.getElementById('modelSearchInput').addEventListener('input', e => {
+        const v = e.target.value;
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            State.search = v.trim();
+            renderModels();
+        }, 100);
+    });
+    document.getElementById('modelProviderFilter').addEventListener('change', e => {
+        State.orProvider = e.target.value;
+        renderModels();
+    });
+
+    // Export
+    document.getElementById('copyBtn').addEventListener('click', copyMarkdown);
+    document.getElementById('csvBtn').addEventListener('click', downloadCsv);
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', e => {
+        const mod = e.metaKey || e.ctrlKey;
+        if (mod && (e.key === 'k' || e.key === 'K') && !e.shiftKey) {
+            // Don't override when in an input
+            if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+            e.preventDefault();
+            const inp = document.getElementById('modelSearchInput');
+            if (inp) {
+                document.querySelector('.tab-btn[data-tab]')?.click();
+                State.activeTab = 'all';
+                renderTabs();
+                renderModels();
+                inp.focus();
+            }
+        } else if (mod && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+            e.preventDefault();
+            copyMarkdown();
+        }
+    });
+
+    loadOpenRouterModels();
+    recompute();
+})();
+</script>
+</body>
+</html>

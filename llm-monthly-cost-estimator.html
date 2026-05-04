@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free LLM Monthly Cost Estimator — freeaicostcalculator.app</title>
+    <meta name="description" content="Estimate monthly LLM API spend in your browser. Workload sliders, 370+ models, sorted bar chart, flat-plan break-even check. Free.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freeaicostcalculator.app/llm-monthly-cost-estimator">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:title" content="Free LLM Monthly Cost Estimator — freeaicostcalculator.app">
+    <meta property="og:description" content="Estimate monthly LLM API spend in your browser. Workload sliders, 370+ models, sorted bar chart, flat-plan break-even check. Free.">
+    <meta property="og:image" content="https://freeaicostcalculator.app/og-image.svg">
+    <meta property="og:url" content="https://freeaicostcalculator.app/llm-monthly-cost-estimator">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free LLM Monthly Cost Estimator — freeaicostcalculator.app">
+    <meta name="twitter:description" content="Estimate monthly LLM API spend in your browser. Workload sliders, 370+ models, sorted bar chart, flat-plan break-even check. Free.">
+    <meta name="twitter:image" content="https://freeaicostcalculator.app/og-image.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Free LLM Monthly Cost Estimator — freeaicostcalculator.app",
+        "description": "Estimate monthly LLM API spend in your browser. Workload sliders, 370+ models, sorted bar chart, flat-plan break-even check. Free.",
+        "url": "https://freeaicostcalculator.app/llm-monthly-cost-estimator",
+        "publisher": { "@type": "Organization", "name": "freeaicostcalculator.app", "url": "https://freeaicostcalculator.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How accurate is the monthly cost estimate?", "acceptedAnswer": { "@type": "Answer", "text": "Accurate within ~10% if your input numbers (req/mo, avg in tokens, avg out tokens) reflect reality. Inputs are usually the source of error, not the formula." } },
+            { "@type": "Question", "name": "Why does the estimate change so much when I tweak max output?", "acceptedAnswer": { "@type": "Answer", "text": "Output tokens are typically priced 3-5× higher than input tokens. Even small changes in average output length dominate the monthly bill — that's why output is the lever to optimize when costs run high." } },
+            { "@type": "Question", "name": "What if my workload varies day-to-day?", "acceptedAnswer": { "@type": "Answer", "text": "Use peak-day numbers × 30 for monthly to get an upper bound, or a typical-day average × 30 for a midpoint. The calculator is fast enough to run both quickly." } },
+            { "@type": "Question", "name": "Can I model multiple endpoints (e.g., chatbot + summarizer + classifier)?", "acceptedAnswer": { "@type": "Answer", "text": "Run the calculator three times with each endpoint's workload, copy results as Markdown, sum. The Pro tier (saved named workloads + monthly forecasting) is on the roadmap." } },
+            { "@type": "Question", "name": "Does it include images, audio, or other modalities?", "acceptedAnswer": { "@type": "Answer", "text": "Not in v1. Text input/output tokens only. Multimodal pricing varies wildly by provider; model those separately." } },
+            { "@type": "Question", "name": "What if I use a model not in the catalog?", "acceptedAnswer": { "@type": "Answer", "text": "The OpenRouter tab loads the entire OpenRouter catalog (370+ models) on page load with live pricing. If your model is on OpenRouter, it's in the picker. Otherwise, models from non-OpenRouter providers are added manually — request via GitHub if a major one is missing." } }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeaicostcalculator.app/" },
+            { "@type": "ListItem", "position": 2, "name": "LLM monthly cost estimator", "item": "https://freeaicostcalculator.app/llm-monthly-cost-estimator" }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Freesuite",
+        "alternateName": "freesuite.app",
+        "url": "https://freesuite.app/",
+        "description": "Free, browser-based tools for documents, PDFs, images, text, and developer workflows. Every tool runs client-side with no sign-up.",
+        "sameAs": ["https://freesuite.app/"]
+    }
+    </script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#faf9f6;--surface:#f4f2ee;--border:#e8e4dd;--text-primary:#1a1917;--text-secondary:#6b6760;--text-muted:#9e9b96;--accent:#C49A2A;--accent-hover:#A8831F;--accent-text:#fff;--shadow:0 1px 3px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.04);--font-body:'Lora',serif;--font-ui:'DM Sans',sans-serif}
+        html.dark{--bg:#141412;--surface:#1e1c1a;--border:#2e2b27;--text-primary:#f0ede8;--text-secondary:#9e9b96;--text-muted:#6b6760;--accent:#D4A835;--accent-hover:#C49A2A;--shadow:0 1px 3px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.2)}
+        html{font-size:15px;line-height:1.6}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)}
+        .header{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+        .header-brand{font-family:var(--font-ui);font-size:15px;font-weight:600;color:var(--accent);text-decoration:none}
+        .theme-toggle{font-family:var(--font-ui);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 12px;cursor:pointer;color:var(--text-secondary);transition:all .15s ease}
+        .theme-toggle:hover{background:var(--border)}
+        .breadcrumb{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);padding:12px 24px;max-width:800px;margin:0 auto}
+        .breadcrumb a{color:var(--accent);text-decoration:none}
+        .breadcrumb a:hover{text-decoration:underline}
+        .landing-content{max-width:800px;margin:0 auto;padding:32px 24px 64px}
+        .landing-content h1{font-size:32px;font-weight:700;margin-bottom:24px;line-height:1.3}
+        .landing-content h2{font-size:22px;font-weight:600;margin-top:32px;margin-bottom:12px}
+        .landing-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.7}
+        .landing-content ul,.landing-content ol{margin:0 0 16px 24px;color:var(--text-secondary)}
+        .landing-content li{margin-bottom:8px;line-height:1.7}
+        .landing-content code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--surface);padding:1px 6px;border-radius:4px}
+        .comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:var(--font-ui);font-size:13px}
+        .comparison-table th{background:var(--surface);padding:12px 16px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+        .comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+        .comparison-table tr:hover td{background:var(--surface)}
+        .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;margin:32px 0}
+        .cta-box h3{font-family:var(--font-ui);font-size:18px;font-weight:600;margin-bottom:12px}
+        .cta-box p{color:var(--text-muted);margin-bottom:16px}
+        .cta-btn{font-family:var(--font-ui);font-size:15px;font-weight:600;background:var(--accent);color:var(--accent-text);border:none;border-radius:8px;padding:12px 24px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .15s ease}
+        .cta-btn:hover{background:var(--accent-hover)}
+        details{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:8px}
+        summary{font-family:var(--font-ui);font-weight:500;cursor:pointer;color:var(--text-primary)}
+        details p{margin-top:12px;margin-bottom:0;font-family:var(--font-ui);font-size:13px}
+        .related-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:24px 0}
+        .related-tool-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;display:block;transition:all .15s ease}
+        .related-tool-card:hover{box-shadow:var(--shadow)}
+        .related-tool-card .tool-name{font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--accent)}
+        .related-tool-card .tool-desc{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);margin-top:4px}
+        .landing-footer{text-align:center;padding:32px 24px;font-family:var(--font-ui);font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+        .suite-badge{position:fixed;bottom:16px;right:16px;font-family:var(--font-ui);font-size:11px;color:var(--text-muted);text-decoration:none}
+        @media (max-width:768px){.landing-content h1{font-size:24px}.landing-content{padding:24px 16px 48px}.comparison-table{font-size:12px}.suite-badge .badge-prefix{display:none}.related-tools{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="header-brand">freeaicostcalculator.app</a>
+        <button class="theme-toggle">☀️</button>
+    </header>
+    <nav class="breadcrumb"><a href="/">Home</a> › LLM monthly cost estimator</nav>
+    <article class="landing-content">
+        <h1>Free LLM Monthly Cost Estimator — Three Numbers, Any Model</h1>
+
+        <p>If you're sizing API spend for a product, three numbers matter: how many requests per month, how big is the average input prompt, how big is the average output response. freeaicostcalculator.app takes those three numbers, runs them against any model in its curated catalog or the full OpenRouter catalog of 370+ models, and shows monthly + yearly spend per model. Sortable, copy-as-Markdown, exportable as CSV.</p>
+
+        <h2>How the estimation works</h2>
+        <p>The math is simple: <code>per-request cost = (input tokens × input rate + output tokens × output rate) / 1,000,000</code>, then <code>monthly cost = per-request × requests-per-month</code>. The calculator applies this for every selected model and renders the result as a sorted horizontal bar chart so you can immediately see the cheapest and most expensive options for your workload.</p>
+
+        <h2>Getting realistic input numbers</h2>
+        <p>Most cost estimates fail because the input numbers were guesses. Use <a href="https://freetokencounter.app">freetokencounter.app</a> on a representative prompt to count actual tokens. Then use <a href="https://freeprompttester.app">freeprompttester.app</a> to run the prompt against a few models and see what the typical output length looks like. Plug those numbers — not your guesses — into freeaicostcalculator.app and you'll get a realistic monthly forecast within ~10% of actual.</p>
+
+        <h2>Common workload presets</h2>
+        <ul>
+            <li><strong>Side project / prototype:</strong> 1,000 req/mo, 300 input tokens, 150 output tokens. Most models cost under $5/mo at this volume.</li>
+            <li><strong>Indie SaaS:</strong> 50,000 req/mo, 800 input tokens, 300 output tokens. Cheapest models around $20-50/mo; frontier models $200-500/mo.</li>
+            <li><strong>Production:</strong> 1,000,000 req/mo, 1,500 input tokens, 500 output tokens. Cheapest models $200-500/mo; frontier models $5,000+/mo.</li>
+            <li><strong>RAG / long-context:</strong> 10,000 req/mo, 5,000 input tokens, 800 output tokens. Input-heavy — prompt caching matters most here.</li>
+        </ul>
+        <p>The calculator has these as one-click preset buttons in the workload panel.</p>
+        <div class="cta-box">
+            <h3>Try freeaicostcalculator.app — Free, No Sign-Up</h3>
+            <p>Workload-driven. 370+ models. Flat-plan break-even check. Pure arithmetic in your browser.</p>
+            <a href="/" class="cta-btn">Open AI Cost Calculator →</a>
+        </div>
+        <h2>Frequently Asked Questions</h2>
+        <details><summary>How accurate is the monthly cost estimate?</summary><p>Accurate within ~10% if your input numbers (req/mo, avg in tokens, avg out tokens) reflect reality. Inputs are usually the source of error, not the formula.</p></details>
+        <details><summary>Why does the estimate change so much when I tweak max output?</summary><p>Output tokens are typically priced 3-5× higher than input tokens. Even small changes in average output length dominate the monthly bill — that's why output is the lever to optimize when costs run high.</p></details>
+        <details><summary>What if my workload varies day-to-day?</summary><p>Use peak-day numbers × 30 for monthly to get an upper bound, or a typical-day average × 30 for a midpoint. The calculator is fast enough to run both quickly.</p></details>
+        <details><summary>Can I model multiple endpoints (e.g., chatbot + summarizer + classifier)?</summary><p>Run the calculator three times with each endpoint's workload, copy results as Markdown, sum. The Pro tier (saved named workloads + monthly forecasting) is on the roadmap.</p></details>
+        <details><summary>Does it include images, audio, or other modalities?</summary><p>Not in v1. Text input/output tokens only. Multimodal pricing varies wildly by provider; model those separately.</p></details>
+        <details><summary>What if I use a model not in the catalog?</summary><p>The OpenRouter tab loads the entire OpenRouter catalog (370+ models) on page load with live pricing. If your model is on OpenRouter, it's in the picker. Otherwise, models from non-OpenRouter providers are added manually — request via GitHub if a major one is missing.</p></details>
+
+        <h2>More Free Tools from Freesuite</h2>
+        <div class="related-tools">
+            <a href="https://freetokencounter.app" class="related-tool-card"><div class="tool-name">freetokencounter.app</div><div class="tool-desc">Live token count for 100+ AI models</div></a>
+            <a href="https://freeprompttester.app" class="related-tool-card"><div class="tool-name">freeprompttester.app</div><div class="tool-desc">Side-by-side prompt comparison + chat</div></a>
+            <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">JSON formatter & validator</div></a>
+            <a href="https://freecsv2json.app" class="related-tool-card"><div class="tool-name">freecsv2json.app</div><div class="tool-desc">Bidirectional CSV ↔ JSON</div></a>
+            <a href="https://freeregextester.app" class="related-tool-card"><div class="tool-name">freeregextester.app</div><div class="tool-desc">Live regex tester</div></a>
+            <a href="https://freebase64.app" class="related-tool-card"><div class="tool-name">freebase64.app</div><div class="tool-desc">Base64 encode/decode</div></a>
+        </div>
+    </article>
+    <footer class="landing-footer">&copy; freeaicostcalculator.app</footer>
+    <a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener"><span class="badge-prefix">by </span>freesuite.app</a>
+    <script>
+    (()=>{const t=document.querySelector('.theme-toggle');const g=()=>localStorage.getItem('suite_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const a=v=>{document.documentElement.classList.toggle('dark',v==='dark');t.textContent=v==='dark'?'🌙':'☀️';localStorage.setItem('suite_theme',v)};a(g());t.addEventListener('click',()=>a(document.documentElement.classList.contains('dark')?'light':'dark'))})();
+    </script>
+</body>
+</html>
