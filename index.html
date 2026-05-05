@@ -1069,16 +1069,35 @@ const MODELS = [
 ];
 
 const PROVIDER_INFO = {
+    openai: { name: 'OpenAI' },
     anthropic: { name: 'Anthropic' },
-    google: { name: 'Google AI' },
+    google: { name: 'Google' },
     xai: { name: 'xAI' },
+    meta: { name: 'Meta (Llama)' },
     mistral: { name: 'Mistral' },
     deepseek: { name: 'DeepSeek' },
+    qwen: { name: 'Qwen' },
     groq: { name: 'Groq' },
     cohere: { name: 'Cohere' },
     openrouter: { name: 'OpenRouter' },
 };
-const PROVIDER_ORDER = ['anthropic', 'google', 'xai', 'mistral', 'deepseek', 'groq', 'cohere', 'openrouter'];
+const PROVIDER_ORDER = ['openai', 'anthropic', 'google', 'xai', 'meta', 'mistral', 'deepseek', 'qwen', 'groq', 'cohere', 'openrouter'];
+
+// Map provider tab → OpenRouter prefix. Tab merges curated direct-API models
+// with all OpenRouter live models matching this prefix (full non-deprecated catalog).
+const PROVIDER_OR_PREFIX = {
+    openai: 'openai',
+    anthropic: 'anthropic',
+    google: 'google',
+    xai: 'x-ai',
+    meta: 'meta-llama',
+    mistral: 'mistralai',
+    deepseek: 'deepseek',
+    qwen: 'qwen',
+    cohere: 'cohere',
+    groq: null,        // Groq is an inference host, not an OR model prefix
+    openrouter: null,  // openrouter tab handled specially below
+};
 
 let OPENROUTER_LIVE = [];
 
@@ -1245,7 +1264,16 @@ function modelsForTab() {
         list = OPENROUTER_LIVE.length > 0 ? OPENROUTER_LIVE : MODELS.filter(m => m.provider === 'openrouter');
         if (State.orProvider) list = list.filter(m => orProviderOf(m.apiId) === State.orProvider);
     } else {
-        list = MODELS.filter(m => m.provider === State.activeTab);
+        // Provider-specific tab: merge curated direct-API models with all
+        // OpenRouter live models whose prefix matches this provider.
+        const curated = MODELS.filter(m => m.provider === State.activeTab);
+        const orPrefix = PROVIDER_OR_PREFIX[State.activeTab];
+        const orMatches = orPrefix ? OPENROUTER_LIVE.filter(m => orProviderOf(m.apiId) === orPrefix) : [];
+        const seen = new Set();
+        list = [];
+        for (const m of [...curated, ...orMatches]) {
+            if (!seen.has(m.id)) { seen.add(m.id); list.push(m); }
+        }
     }
     if (State.search) {
         const q = State.search.toLowerCase();
